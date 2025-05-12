@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function WhySellSectionLandingPage() {
   return (
-    <section className=" mx-auto mt-10 pt-2 px-6 md:px-16">
+    <section className="bg-white mx-auto mt-10 pt-2 px-6 md:px-16">
       <h2 className="text-3xl md:text-4xl font-semibold text-appText text-center md:text-left ">
         Why do{" "}
         <span className="text-appGreen">

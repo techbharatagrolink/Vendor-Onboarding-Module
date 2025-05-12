@@ -9,13 +9,13 @@ const slides = [
     title: "Selection Insights",
     description:
       "Uncover best-selling products, identify growth opportunities, and understand customer preferences to stay ahead of the competition.",
-    image: "/sneakpeak.svg",
+    image: "/sneakPeak.svg",
   },
   {
     title: "Inventory Overview",
     description:
       "Monitor inventory levels, forecast stock requirements, and prevent supply chain disruptions with intelligent insights.",
-    image: "/sneakpeak.svg",
+    image: "/sneakPeak.svg",
   },
 ];
 

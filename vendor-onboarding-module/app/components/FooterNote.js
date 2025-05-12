@@ -34,7 +34,7 @@ import Image from "next/image";
 
 export default function FooterNote() {
   return (
-    <footer className="bg-background py-4 px-6 text-appText">
+    <footer className="bg-white py-4 px-6 text-appText">
       <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
         {/* Logo */}
         <div className="flex-shrink-0">

@@ -11,7 +11,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-background shadow-card px-6 py-4">
+      <nav className="sticky top-0 z-50 bg-white shadow-card px-6 py-4">
         <div className="flex justify-between items-center">
           {/* Logo + Links */}
           <div className="flex items-center text-appText">
