@@ -1,17 +1,62 @@
-import ProgressStepper from "../components/ProgressStepper";
-export default function page() {
+import React from 'react'
+
+import ProgressStepper from '@/app/components/ProgressStepper';
+import OnboardingStatus from '@/app/components/OnboardingStatus';
+
+
+import { EnvelopeIcon, DevicePhoneMobileIcon } from '@heroicons/react/24/outline';
+
+const page = () => {
   return (
     <div className=" p-4 bg-white">
-      <ProgressStepper currentStep={0} />
+      <ProgressStepper currentStep={2} />
       <div className="flex flex-col md:flex-row gap-4">
 
         {/* Left Column (25%) */}
         <div className="w-full md:w-1/4 bg-white p-4    ">
-          
+          <OnboardingStatus/>
         </div>
 
         {/* Center Column (50%) */}
+
         <div className="w-full md:w-2/4 bg-white p-4 space-y-8">
+            <h1>Hello, Shivansh Lodhi</h1>
+            {/* Hellloooooo */}
+
+
+
+            <div className="max-w-xl w-full p-4 bg-white ">
+      <h2 className="text-sm font-medium text-gray-600 mb-4">
+        Mobile & Email Verification
+      </h2>
+
+      {/* Mobile */}
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center space-x-2">
+          <DevicePhoneMobileIcon className="h-5 w-5 text-appGreen" />
+          <span className="text-sm text-gray-700">+919302832696</span>
+        </div>
+        <span className="bg-green-100 text-appGreen text-xs px-3 py-1 rounded-full font-semibold">
+          Verified
+        </span>
+      </div>
+
+      {/* Email */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-2">
+          <EnvelopeIcon className="h-5 w-5 text-gray-500" />
+          <span className="text-sm text-gray-700">my_email@gmail.com</span>
+        </div>
+        <button className="text-xs text-green-600 hover:underline font-medium">
+          Resend Email
+        </button>
+      </div>
+    </div>
+            
+            
+            <hr className='text-appText'></hr>
+            
+            {/* Hellooooooooooo */}
           <div className="relative">
     <input type="text" id="floating_outlined" className="block px-2.5 pb-2.5 pt-4 w-[75%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer" placeholder=" " />
     <label htmlFor="floating_outlined" className="absolute text-sm text-appText duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-black-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Enter Mobile Number<span className="text-appRed">{" *"}</span></label>
@@ -70,3 +115,4 @@ export default function page() {
     </div>
   );
 }
+export default page;

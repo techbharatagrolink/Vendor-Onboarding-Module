@@ -10,7 +10,7 @@ const LoginModal = ({ isOpen, onClose }) => {
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-[#000000] z-40"
-        style={{ opacity: 0.4 }}
+        style={{ opacity: 0.41 }}
         onClick={onClose}
       ></div>
 

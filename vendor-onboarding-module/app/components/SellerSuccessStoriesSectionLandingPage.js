@@ -49,7 +49,7 @@ export default function SellerSuccessStories() {
             <img
               src={stories[current].image}
               alt={stories[current].name}
-              className="w-20 h-20 rounded-full border-4 border-yellow-400 object-cover"
+              className="w-20 h-20 rounded-full border-4 border-white object-cover"
             />
           </div>
           <h3 className="text-center mt-4 font-semibold text-lg">
