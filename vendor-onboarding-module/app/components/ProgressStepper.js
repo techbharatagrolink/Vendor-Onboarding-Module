@@ -8,7 +8,16 @@ const steps = [
 
 const ProgressStepper = ({ currentStep }) => {
   return (
-    <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6 py-4">
+
+<>
+
+
+<div className="flex flex-wrap -mx-2">
+  <div className="w-full  lg:w-1/4 px-2">
+
+  </div>
+  <div className="w-full lg:w-2/4 px-2 mb-4">
+     <div className="flex flex-wrap px-4 items-center gap-4 md:gap-6 py-4">
       {steps.map((step, index) => {
         const isCompleted = index < currentStep;
         const isActive = index === currentStep;
@@ -65,6 +74,18 @@ const ProgressStepper = ({ currentStep }) => {
         );
       })}
     </div>
+  </div>
+  <div className="w-full  lg:w-1/4 px-2 ">
+  </div>
+</div>
+
+
+
+
+   
+
+
+    </>
   );
 };
 

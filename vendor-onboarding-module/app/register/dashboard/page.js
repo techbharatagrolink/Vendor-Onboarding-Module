@@ -88,7 +88,7 @@ const page = () => {
       </p>
 
       {/* Submit Button */}
-      <button className="w-[40%] bg-appGreen text-white py-2 rounded flex items-center justify-center gap-2 hover:bg-green-700 transition">
+      <button style={{}} className="w-[40%] bg-appGreen text-white py-2 rounded flex items-center justify-center gap-2 hover:bg-green-700 transition">
          <a href="/register/password">Register & Continue</a>
         <span className="text-xl">&rarr;</span>
       </button>

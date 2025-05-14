@@ -1,11 +1,14 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
 import { HiMenu, HiX } from "react-icons/hi";
 
 import LoginModal from "./LoginModal";
+import Link from "next/link";
 
 export default function Navbar() {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
 
@@ -15,26 +18,29 @@ export default function Navbar() {
         <div className="flex justify-between items-center">
           {/* Logo + Links */}
           <div className="flex items-center text-appText">
-            <Image
+            <button onClick={()=>router.push('/')} className="cursor-pointer"><Image
               src="/logo1.svg"
               alt="Logo"
               width={140}
               height={40}
               className="mr-3"
-            />
+              
+            /></button>
+            
             <div className="hidden md:flex space-x-6 ml-6">
-              <a href="/" className="font-medium">
+              
+              <Link href="/" className="font-medium">
                 Sell Online
-              </a>
-              <a href="/" className="font-medium">
+              </Link>
+              <Link href="/" className="font-medium">
                 Fees and Commission
-              </a>
-              <a href="/" className="font-medium">
+              </Link>
+              <Link href="/" className="font-medium">
                 Grow
-              </a>
-              <a href="#" className="font-medium">
+              </Link>
+              <Link href="#" className="font-medium">
                 Learn
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -70,22 +76,22 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden mt-4 space-y-4 text-appText text-center">
-            <a href="/" className="block font-medium ">
+            <Link href="/" className="block font-medium ">
               Sell Online
-            </a>
-            <a href="/" className="block font-medium">
+            </Link>
+            <Link href="/" className="block font-medium">
               Fees and Commission
-            </a>
-            <a href="/" className="block font-medium">
+            </Link>
+            <Link href="/" className="block font-medium">
               Grow
-            </a>
-            <a href="#" className="block font-medium">
+            </Link>
+            <Link href="#" className="block font-medium">
               Learn
-            </a>
+            </Link>
             <button
               onClick={() => setShowLogin(true)}
               href="/"
-              className="block font-medium"
+              className="block mx-auto font-medium "
             >
               Login
             </button>
