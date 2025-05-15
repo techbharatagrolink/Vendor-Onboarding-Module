@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 import ProgressStepper from "../components/ProgressStepper";
 import Link from 'next/link';
+import Image from 'next/image';
 export default function Page() {
   const router = useRouter();
   return (
@@ -36,7 +37,7 @@ export default function Page() {
 
       {/* Terms & Privacy */}
       <p className="text-sm text-appText">
-        By continuing, I agree to Bharat Agrolink's{' '}
+        By continuing, I agree to Bharat Agrolink&apos;s{' '}
         <span className="text-appGreen font-semibold cursor-pointer">Term of Use</span> &{' '}
         <span className="text-appGreen font-semibold cursor-pointer">Privacy Policy</span>
       </p>
@@ -53,11 +54,13 @@ export default function Page() {
           <div className="max-w-xs p-4 border border-appText rounded-xl shadow-sm bg-white">
       <div className="flex items-start gap-3">
         {/* Profile Image */}
-        <img
-          src="/Group 2.png" // replace with your image path
-          alt="Swastik Arya"
-          className="w-10 h-10 rounded-full object-cover"
-        />
+        <Image
+                src="/Group 2.png" // Make sure this is in your /public folder
+                alt="Swastik Arya"
+                width={40}
+                height={40}
+                className="rounded-full object-cover"
+              />
 
         {/* Testimonial Text */}
         <div>
