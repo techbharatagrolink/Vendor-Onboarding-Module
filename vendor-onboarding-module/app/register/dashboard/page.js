@@ -55,6 +55,9 @@ export default function Page() {
       }
     }
   }
+  const finalSubmit = () => {
+    console.log(address, city, state, pincode);
+  };
 
   return (
     <div className=" p-4 bg-white">
@@ -256,10 +259,10 @@ export default function Page() {
 
           {/* Submit Button */}
           <button
-            style={{}}
+            onClick={finalSubmit}
             className="w-[70%] bg-appGreen text-white py-2 rounded flex items-center justify-center gap-2 hover:bg-green-700 transition"
           >
-            <a href="/register/password">Register & Continue</a>
+            <a>Register & Continue</a>
             <span className="text-xl">&rarr;</span>
           </button>
         </div>
