@@ -11,11 +11,50 @@ import {
 } from "@heroicons/react/24/outline";
 import SignaturePadSection from "@/app/components/SignaturePadSection";
 
-const Page = () => {
-  const [address, setAddress] = useState("Address 1");
+export default function Page() {
+  const [address, setAddress] = useState("");
   const [state, setState] = useState("Your State");
   const [city, setCity] = useState("Your City");
-  const [pincode, setPincode] = useState("462003");
+  const [pincode, setPincode] = useState("");
+  // const [errorInPINCode, setErrorInPINCode] = useState(null);
+
+  // async function handlePINCode() {
+  //   console.log("OK");
+  //   const data = await fetch(
+  //     "https://cors-anywhere.herokuapp.com/https://api.postalpincode.in/pincode/744104",
+  //     {
+  //       method: "GET",
+  //     }
+  //   );
+  //   const posts = await data.json();
+  //   console.log(posts[0].PostOffice[0].Division);
+  //   console.log(posts[0].PostOffice[0].State);
+  // }
+  async function setStateandCity(e) {
+    setPincode(e.target.value);
+    const length = e.target.value.length;
+    // console.log(length);
+    // console.log("OK");
+    if (length == 6) {
+      const data = await fetch(
+        `https://cors-anywhere.herokuapp.com/https://api.postalpincode.in/pincode/${e.target.value}`,
+        {
+          method: "GET",
+        }
+      );
+      const posts = await data.json();
+      console.log(posts[0].PostOffice);
+      if (posts[0].PostOffice) {
+        console.log(posts[0].PostOffice[0].District);
+        console.log(posts[0].PostOffice[0].State);
+        setCity(posts[0].PostOffice[0].District);
+        setState(posts[0].PostOffice[0].State);
+        // setErrorInPINCode(null);
+      } else {
+        // setErrorInPINCode("Wrong Pincode");
+      }
+    }
+  }
 
   return (
     <div className=" p-4 bg-white">
@@ -138,6 +177,8 @@ const Page = () => {
             <input
               type="text"
               id="address_line"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
               className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
               placeholder=""
             />
@@ -151,8 +192,10 @@ const Page = () => {
           </div>
           <div className="relative">
             <input
-              type="text"
+              type="number"
               id="pincode"
+              value={pincode}
+              onChange={(e) => setStateandCity(e)}
               className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
               placeholder=""
             />
@@ -163,36 +206,37 @@ const Page = () => {
               PIN Code<span className="text-appRed">{" *"}</span>
             </label>
           </div>
+          <p id="error"></p>
           <div className="relative w-full 2xl:w-[72%]">
             <input
               type="text"
-              id="pincode"
-              className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-appText rounded-lg border border-appGrey appearance-none dark:text-appText focus:outline-none peer"
-              placeholder=""
-              value={state} // default pre-filled value
-              disabled
-            />
-            <label
-              htmlFor="pincode"
-              className="absolute text-sm text-appText duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 start-1"
-            >
-              State<span className="text-appRed">{" *"}</span>
-            </label>
-          </div>
-          <div className="relative w-full 2xl:w-[72%]">
-            <input
-              type="text"
-              id="pincode"
+              id="city"
               className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-appText rounded-lg border border-appGrey appearance-none dark:text-appText focus:outline-none peer"
               placeholder=""
               value={city} // default pre-filled value
               disabled
             />
             <label
-              htmlFor="pincode"
+              htmlFor="city"
               className="absolute text-sm text-appText duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 start-1"
             >
               City<span className="text-appRed">{" *"}</span>
+            </label>
+          </div>
+          <div className="relative w-full 2xl:w-[72%]">
+            <input
+              type="text"
+              id="state"
+              className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-appText rounded-lg border border-appGrey appearance-none dark:text-appText focus:outline-none peer"
+              placeholder=""
+              value={state} // default pre-filled value
+              disabled
+            />
+            <label
+              htmlFor="state"
+              className="absolute text-sm text-appText duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 start-1"
+            >
+              State<span className="text-appRed">{" *"}</span>
             </label>
           </div>
 
@@ -248,5 +292,4 @@ const Page = () => {
       </div>
     </div>
   );
-};
-export default Page;
+}
