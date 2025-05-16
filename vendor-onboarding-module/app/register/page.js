@@ -4,8 +4,31 @@ import { useRouter } from 'next/navigation'
 import ProgressStepper from "../components/ProgressStepper";
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from 'react';
+import { useFormContext } from '../context/FormContext';
 export default function Page() {
+  
   const router = useRouter();
+  const [mobileNum, setMobileNum] = useState("")
+  const [email, setEmail] = useState("")
+  const [gst, setGst] = useState("")
+  const{formData, updateFormData} = useFormContext();
+
+  const handleMobile = (e)=>{
+    setMobileNum(e.target.value)
+    updateFormData("mobileNum", mobileNum)
+  }
+  const handleEmail = (e)=>{
+    setEmail(e.target.value)
+    updateFormData("email", email)
+  }
+  const handleGST = (e)=>{
+    setGst(e.target.value)
+    updateFormData("gstNum", gst)
+  }
+
+
+
   return (
     <div className=" p-4 bg-white">
       <ProgressStepper currentStep={0} />
@@ -19,15 +42,15 @@ export default function Page() {
         {/* Center Column (50%) */}
         <div className="w-full md:w-2/4 bg-white p-4 space-y-8">
           <div className="relative">
-    <input type="text" id="mobile_number" className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer" placeholder="" />
-    <label htmlFor="mobile_number" className="absolute text-sm text-appText duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-black-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Enter Mobile Number<span className="text-appRed">{" *"}</span></label>
+    <input value={mobileNum} onChange={handleMobile} type="text" id="mobile_number" className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer" placeholder="" />
+    <label  htmlFor="mobile_number" className="absolute text-sm text-appText duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-black-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Enter Mobile Number<span className="text-appRed">{" *"}</span></label>
 </div>
 <div className="relative">
-    <input type="text" id="email_id" className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer" placeholder="" />
+    <input value={email} onChange={handleEmail} type="text" id="email_id" className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer" placeholder="" />
     <label htmlFor="email_id" className="absolute text-sm text-appText duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-black-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Email ID<span className="text-appRed">{" *"}</span></label>
 </div>
 <div className="relative">
-    <input type="text" id="gst" className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%]  text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer" placeholder="" />
+    <input value={gst} onChange={handleGST} type="text" id="gst" className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%]  text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer" placeholder="" />
     <label htmlFor="gst" className="absolute text-sm text-appText duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-black-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Enter GST Number</label>
 </div>
  {/* Note */}

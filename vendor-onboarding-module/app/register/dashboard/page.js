@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 
 import ProgressStepper from "@/app/components/ProgressStepper";
@@ -10,12 +10,24 @@ import {
   DevicePhoneMobileIcon,
 } from "@heroicons/react/24/outline";
 import SignaturePadSection from "@/app/components/SignaturePadSection";
+import { useFormContext } from "@/app/context/FormContext";
 
 export default function Page() {
+
+  const {formData, updateFormData} = useFormContext();
+  
+  const [gstIn, setGstIn] = useState("")
+  const [companyName, setCompanyName] = useState("")
+  const [displayName, setDisplayName] = useState("")
+  const [description, setDescription] = useState("")
   const [address, setAddress] = useState("");
   const [state, setState] = useState("Your State");
   const [city, setCity] = useState("Your City");
   const [pincode, setPincode] = useState("");
+
+  
+  
+
   // const [errorInPINCode, setErrorInPINCode] = useState(null);
 
   // async function handlePINCode() {
@@ -57,7 +69,36 @@ export default function Page() {
   }
   const finalSubmit = () => {
     console.log(address, city, state, pincode);
+    console.log(formData)
   };
+  const handleGST=(e)=>{
+    setGstIn(e.target.value);
+    updateFormData("gstIN",gstIn)
+  }
+    const handleCompanyName=(e)=>{
+    setCompanyName(e.target.value);
+    updateFormData("companyName",companyName)
+  }
+  const handleDisplayName=(e)=>{
+    setDisplayName(e.target.value);
+    updateFormData("displayName",displayName)
+  }
+  const handleDescription=(e)=>{
+    setDescription(e.target.value);
+    updateFormData("description",description)
+  }
+  const handleAddress=(e)=>{
+    setAddress(e.target.value);
+    updateFormData("address",address)
+  }
+  const handlePinCode=(e)=>{
+    setPincode(e.target.value);
+    setStateandCity(e)
+    updateFormData("pincode",pincode)
+    updateFormData("city", city)
+    updateFormData("state", state)
+  }
+
 
   return (
     <div className=" p-4 bg-white">
@@ -116,6 +157,10 @@ export default function Page() {
               id="gst_input"
               className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
               placeholder=""
+              value={gstIn}
+              // onChange={(e)=>setGstIn(e.target.value)}
+              // onChange={(e)=>updateFormData("gstIN", e.target.value)}
+              onChange={handleGST}
             />
             <label
               htmlFor="gst_input"
@@ -133,6 +178,9 @@ export default function Page() {
               id="company_name"
               className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
               placeholder=""
+              value={companyName}
+              // onChange={(e)=>setCompanyName(e.target.value)}
+              onChange={handleCompanyName}
             />
             <label
               htmlFor="company_name"
@@ -147,6 +195,9 @@ export default function Page() {
               id="display_name"
               className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
               placeholder=""
+              value={displayName}
+              // onChange={(e)=>setDisplayName(e.target.value)}
+              onChange={handleDisplayName}
             />
             <label
               htmlFor="display_name"
@@ -161,6 +212,9 @@ export default function Page() {
               id="description"
               className="block h-30 px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
               placeholder=""
+              value={description}
+              // onChange={(e)=>setDescription(e.target.value)}
+              onChange={handleDescription}
             />
             <label
               htmlFor="description"
@@ -181,7 +235,8 @@ export default function Page() {
               type="text"
               id="address_line"
               value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              // onChange={(e) => setAddress(e.target.value)}
+              onChange={handleAddress}
               className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
               placeholder=""
             />
@@ -198,7 +253,8 @@ export default function Page() {
               type="number"
               id="pincode"
               value={pincode}
-              onChange={(e) => setStateandCity(e)}
+              // onChange={(e) => setStateandCity(e)}
+              onChange={handlePinCode}
               className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
               placeholder=""
             />
