@@ -13,20 +13,58 @@ import SignaturePadSection from "@/app/components/SignaturePadSection";
 import { useFormContext } from "@/app/context/FormContext";
 
 export default function Page() {
+  const { formData, updateFormData } = useFormContext();
 
-  const {formData, updateFormData} = useFormContext();
-  
-  const [gstIn, setGstIn] = useState("")
-  const [companyName, setCompanyName] = useState("")
-  const [displayName, setDisplayName] = useState("")
-  const [description, setDescription] = useState("")
+  const [gstIn, setGstIn] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [displayName, setDisplayName] = useState("");
+  const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
   const [state, setState] = useState("Your State");
   const [city, setCity] = useState("Your City");
   const [pincode, setPincode] = useState("");
+  const [errors, setErrors] = useState({});
 
-  
-  
+  const validateForm = () => {
+    const newErrors = {};
+    const gstRegex =
+      /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
+
+    if (!formData.gstIN || !gstRegex.test(formData.gstIN)) {
+      newErrors.gstIN = "Enter a valid GSTIN.";
+    }
+
+    if (!formData.companyName || !formData.companyName.trim()) {
+      newErrors.companyName = "Company name is required.";
+    }
+
+    if (!formData.displayName || !formData.displayName.trim()) {
+      newErrors.displayName = "Display name is required.";
+    }
+
+    if (formData.description && formData.description.trim().length < 10) {
+      newErrors.description = "Description should be at least 10 characters.";
+    }
+
+    if (!formData.address || !formData.address.trim()) {
+      newErrors.address = "Address is required.";
+    }
+
+    if (!formData.pincode || !formData.pincode.match(/^\d{6}$/)) {
+      newErrors.pincode = "Pincode must be 6 digits.";
+    }
+
+    if (!formData.city || !formData.city.trim()) {
+      newErrors.city = "City not found. Check pincode.";
+    }
+
+    if (!formData.state || !formData.state.trim()) {
+      newErrors.state = "State not found. Check pincode.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   // const [errorInPINCode, setErrorInPINCode] = useState(null);
 
@@ -43,62 +81,75 @@ export default function Page() {
   //   console.log(posts[0].PostOffice[0].State);
   // }
   async function setStateandCity(e) {
-    setPincode(e.target.value);
-    const length = e.target.value.length;
-    // console.log(length);
-    // console.log("OK");
-    if (length == 6) {
+    const newPin = e.target.value;
+    setPincode(newPin);
+    if (newPin.length === 6) {
       const data = await fetch(
-        `https://cors-anywhere.herokuapp.com/https://api.postalpincode.in/pincode/${e.target.value}`,
-        {
-          method: "GET",
-        }
+        `https://cors-anywhere.herokuapp.com/https://api.postalpincode.in/pincode/${newPin}`
       );
       const posts = await data.json();
-      console.log(posts[0].PostOffice);
       if (posts[0].PostOffice) {
-        console.log(posts[0].PostOffice[0].District);
-        console.log(posts[0].PostOffice[0].State);
-        setCity(posts[0].PostOffice[0].District);
-        setState(posts[0].PostOffice[0].State);
-        // setErrorInPINCode(null);
+        const newCity = posts[0].PostOffice[0].District;
+        const newState = posts[0].PostOffice[0].State;
+        setCity(newCity);
+        setState(newState);
+
+        // Update formData here, using new values directly
+        updateFormData("pincode", newPin);
+        updateFormData("city", newCity);
+        updateFormData("state", newState);
       } else {
-        // setErrorInPINCode("Wrong Pincode");
+        // Handle invalid pincode
+        updateFormData("pincode", newPin);
+        updateFormData("city", "");
+        updateFormData("state", "");
       }
+    } else {
+      // Pincode less than 6 characters
+      updateFormData("pincode", newPin);
+      updateFormData("city", "");
+      updateFormData("state", "");
     }
   }
-  const finalSubmit = () => {
-    console.log(address, city, state, pincode);
-    console.log(formData)
-  };
-  const handleGST=(e)=>{
-    setGstIn(e.target.value);
-    updateFormData("gstIN",gstIn)
-  }
-    const handleCompanyName=(e)=>{
-    setCompanyName(e.target.value);
-    updateFormData("companyName",companyName)
-  }
-  const handleDisplayName=(e)=>{
-    setDisplayName(e.target.value);
-    updateFormData("displayName",displayName)
-  }
-  const handleDescription=(e)=>{
-    setDescription(e.target.value);
-    updateFormData("description",description)
-  }
-  const handleAddress=(e)=>{
-    setAddress(e.target.value);
-    updateFormData("address",address)
-  }
-  const handlePinCode=(e)=>{
-    setPincode(e.target.value);
-    setStateandCity(e)
-    updateFormData("pincode",pincode)
-    updateFormData("city", city)
-    updateFormData("state", state)
-  }
 
+  const handleSubmit = () => {
+    if (validateForm()) {
+      console.log("Form is valid, submit:", formData);
+    } else {
+      console.log("Validation failed");
+    }
+  };
+
+  const handleGST = (e) => {
+    const value = e.target.value;
+    setGstIn(value);
+    updateFormData("gstIN", value);
+  };
+
+  const handleCompanyName = (e) => {
+    const value = e.target.value;
+    setCompanyName(value);
+    updateFormData("companyName", value);
+  };
+  const handleDisplayName = (e) => {
+    const value = e.target.value;
+    setDisplayName(value);
+    updateFormData("displayName", value);
+  };
+  const handleDescription = (e) => {
+    const value = e.target.value;
+    setDescription(value);
+    updateFormData("description", value);
+  };
+  const handleAddress = (e) => {
+    const value = e.target.value;
+    setAddress(value);
+    updateFormData("address", value);
+  };
+  const handlePinCode = (e) => {
+    setPincode(e.target.value);
+    setStateandCity(e);
+  };
 
   return (
     <div className=" p-4 bg-white">
@@ -169,6 +220,9 @@ export default function Page() {
               Enter GSTIN<span className="text-appRed">{" *"}</span>
             </label>
           </div>
+          {errors.gstIN && (
+            <p className="text-appRed text-sm">{errors.gstIN}</p>
+          )}
           <p className="text-sm text-appText">
             GSTIN is required to sell products on Bharat Agrolink.
           </p>
@@ -189,6 +243,9 @@ export default function Page() {
               Full Company Name<span className="text-appRed">{" *"}</span>
             </label>
           </div>
+          {errors.companyName && (
+            <p className="text-appRed text-sm">{errors.companyName}</p>
+          )}
           <div className="relative">
             <input
               type="text"
@@ -206,6 +263,9 @@ export default function Page() {
               Display | Business Name<span className="text-appRed">{" *"}</span>
             </label>
           </div>
+          {errors.displayName && (
+            <p className="text-appRed text-sm">{errors.displayName}</p>
+          )}
           <div className="relative">
             <textarea
               type="text"
@@ -223,6 +283,9 @@ export default function Page() {
               Description<span className="text-appRed">{" *"}</span>
             </label>
           </div>
+          {errors.description && (
+            <p className="text-appRed text-sm">{errors.description}</p>
+          )}
           <SignaturePadSection />
           <hr className="text-appText"></hr>
           {/* ID and Signature Verification */}
@@ -248,6 +311,9 @@ export default function Page() {
               <span className="text-appRed">{" *"}</span>
             </label>
           </div>
+          {errors.address && (
+            <p className="text-appRed text-sm">{errors.address}</p>
+          )}
           <div className="relative">
             <input
               type="number"
@@ -265,7 +331,9 @@ export default function Page() {
               PIN Code<span className="text-appRed">{" *"}</span>
             </label>
           </div>
-          <p id="error"></p>
+          {errors.pincode && (
+            <p className="text-appRed text-sm">{errors.pincode}</p>
+          )}
           <div className="relative w-full 2xl:w-[72%]">
             <input
               type="text"
@@ -282,6 +350,7 @@ export default function Page() {
               City<span className="text-appRed">{" *"}</span>
             </label>
           </div>
+          {errors.city && <p className="text-appRed text-sm">{errors.city}</p>}
           <div className="relative w-full 2xl:w-[72%]">
             <input
               type="text"
@@ -298,6 +367,9 @@ export default function Page() {
               State<span className="text-appRed">{" *"}</span>
             </label>
           </div>
+          {errors.state && (
+            <p className="text-appRed text-sm">{errors.state}</p>
+          )}
 
           {/* Note */}
 
@@ -315,7 +387,7 @@ export default function Page() {
 
           {/* Submit Button */}
           <button
-            onClick={finalSubmit}
+            onClick={handleSubmit}
             className="w-[70%] bg-appGreen text-white py-2 rounded flex items-center justify-center gap-2 hover:bg-green-700 transition"
           >
             <a>Register & Continue</a>
