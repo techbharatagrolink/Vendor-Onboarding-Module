@@ -1,22 +1,30 @@
+// app/api/verifyGST/route.js
 import { NextResponse } from "next/server";
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
-  const gstin = searchParams.get("gstin");
-  const action = searchParams.get("action") || "TP"; // Default to "TP"
+  const gstNo = searchParams.get("gstNo"); // Match client parameter
+  const keySecret = searchParams.get("key_secret"); // Match client parameter
 
-  const gstinRegex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
+  const gstinRegex =
+    /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
 
-  if (!gstin || !gstinRegex.test(gstin)) {
+  if (!gstNo || !gstinRegex.test(gstNo)) {
     return NextResponse.json(
       { error: "Invalid GSTIN. Must be a 15-character valid GSTIN format." },
       { status: 400 }
     );
   }
 
-  try {
-    const url = `https://api.gst.gov.in/commonapi/v1.0/tpaddtlstatus?gstin=${gstin}&action=${action}`;
+  if (!keySecret) {
+    return NextResponse.json(
+      { error: "Missing key_secret parameter." },
+      { status: 400 }
+    );
+  }
 
+  try {
+    const url = `https://appyflow.in/api/verifyGST?gstNo=${gstNo}&key_secret=${keySecret}`;
     const response = await fetch(url, {
       method: "GET",
       headers: {
@@ -25,7 +33,7 @@ export async function GET(request) {
     });
 
     if (!response.ok) {
-      throw new Error(`API error: ${response.status}`);
+      throw new Error(`Appyflow API error: ${response.status}`);
     }
 
     const data = await response.json();
@@ -33,7 +41,7 @@ export async function GET(request) {
   } catch (error) {
     console.error("Fetch error:", error.message);
     return NextResponse.json(
-      { error: "Failed to fetch company data." },
+      { error: "Failed to fetch GSTIN data." },
       { status: 500 }
     );
   }

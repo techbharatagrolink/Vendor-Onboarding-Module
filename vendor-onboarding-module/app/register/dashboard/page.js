@@ -170,12 +170,15 @@ export default function Page() {
 
     if (gstinRegex.test(newGstin)) {
       try {
-        const response = await fetch(`/api/gstin?gstin=${newGstin}&action=TP`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          `/api/verifyGST?gstNo=${newGstin}&key_secret=zcnnieVlTGTpvGYoRZ9RpeWKv7f2`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         console.log(response);
 
         if (!response.ok) {
@@ -183,18 +186,18 @@ export default function Page() {
         }
 
         const result = await response.json();
-        const info = result.data?.data;
+        const info = result.data.taxpayerInfo;
         console.log(info);
         if (
-          info?.legalName &&
-          info?.bussNature &&
-          info?.pan &&
-          info?.stateName
+          info?.tradeNam &&
+          info?.ctb &&
+          info?.gstin &&
+          info?.pradr.addr.stcd
         ) {
-          updateFormData("legalName", info.legalName); // Legal name
-          updateFormData("pan", info.pan); // Extract PAN from GSTIN
-          updateFormData("bussNature", info.bussNature); // Constitution of business
-          updateFormData("stateName", info.stateName); // State code
+          updateFormData("legalName", info.tradeNam); // Legal name
+          updateFormData("pan", info.gstin); // Extract PAN from GSTIN
+          updateFormData("bussNature", info.ctb); // Constitution of business
+          updateFormData("stateName", info.pradr.addr.stcd); // State code
           setErrors((prev) => ({ ...prev, gstIN: "" }));
         } else {
           updateFormData("legalName", "");
