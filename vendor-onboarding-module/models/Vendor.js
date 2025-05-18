@@ -6,6 +6,8 @@ const vendorSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true },
     gst: { type: String, required: true },
     password: { type: String, required: true },
+    otp: { type: String },
+    otpExpires: { type: Date }
   },
   {
     collection: "vendors", // Collection name in MongoDB

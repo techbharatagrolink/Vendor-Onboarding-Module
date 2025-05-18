@@ -53,6 +53,13 @@ export default function Navbar() {
             >
               Login
             </button>
+            {/* <button
+              // href="/"
+              
+              className="cursor-pointer text-appText font-medium my-auto"
+            >
+              <a href="/login">Login</a> 
+            </button> */}
             <a
               href="/register"
               className="text-black font-bold bg-appYellow hover:bg-appDarkYellow hover:text-white transition duration-200 px-5 py-3 rounded-sm"
