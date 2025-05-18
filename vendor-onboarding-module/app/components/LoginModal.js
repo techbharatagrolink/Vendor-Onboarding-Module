@@ -15,7 +15,7 @@ const LoginModal = ({ isOpen, onClose }) => {
   const router = useRouter();
 
   const sendOtp = async (event) => {
-    event.preventDefault;
+    event.preventDefault();
     setError("");
     const res = await fetch("/api/send-otp", {
       method: "POST",
@@ -81,11 +81,13 @@ const LoginModal = ({ isOpen, onClose }) => {
             <form>
               <input
                 type="text"
+                value={mobile}
+                onChange={(e) => setMobile(e.target.value)}
                 placeholder="Username or phone number or email *"
                 className="w-full border border-gray-300 px-3 py-2 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-green-500"
               />
               <button
-                type="submit"
+                
                 className="cursor-pointer w-full bg-appGreen text-white py-2 rounded hover:bg-green-700 transition"
                 onClick={sendOtp}
               >

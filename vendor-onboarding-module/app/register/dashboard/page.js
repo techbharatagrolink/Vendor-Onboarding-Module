@@ -1,6 +1,7 @@
 "use client";
 import React, { useContext } from "react";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 import ProgressStepper from "@/app/components/ProgressStepper";
 import OnboardingStatus from "@/app/components/OnboardingStatus";
@@ -13,6 +14,7 @@ import SignaturePadSection from "@/app/components/SignaturePadSection";
 import { useFormContext } from "@/app/context/FormContext";
 
 export default function Page() {
+  const router = useRouter();
   const { formData, updateFormData } = useFormContext();
   const [fieldEnabled, setFieldEnabled] = useState(false);
 
@@ -109,6 +111,11 @@ export default function Page() {
       updateFormData("state", "");
     }
   }
+    useEffect(() => {
+      if (!localStorage.getItem("token")) {
+        router.push("/");
+      }
+    }, []);
 
   const handleSubmit = () => {
     if (validateForm()) {
