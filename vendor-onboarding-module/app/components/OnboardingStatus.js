@@ -1,34 +1,71 @@
 "use client";
 
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
+import { useFormContext } from "../context/FormContext";
+
 
 export default function OnboardingStatus() {
+  const {formData} = useFormContext();
+  const progressCalculator = (formData)=>{
+
+let num = 0
+if(formData.mobileNum){
+  num++
+}
+if(formData.email){
+  num++
+}
+if(formData.gstIN){
+  num++
+}
+if(formData.companyName){
+  num++
+}
+if(formData.displayName){
+  num++
+}
+if(formData.description){
+  num++
+}
+if(formData.address){
+  num++
+}
+if(formData.state){
+  num++
+}
+if(formData.city){
+  num++
+}
+let percentage = num/10*100;
+return percentage
+  }
+  
   const status = {
-    progress: 20,
+    progress: progressCalculator(formData),
     sections: [
       {
         title: "Mobile & Email Verification",
         items: [
-          { label: "Mobile Verification", completed: false },
-          { label: "Email Verification", completed: true },
+          { label: "Mobile Verification", completed: formData.mobileNum ? true: false },
+          { label: "Email Verification", completed: formData.email ? true: false },
         ],
       },
       {
         title: "ID & Signature Verification",
         items: [
-          { label: "GSTIN", completed: true },
-          { label: "Full Company Name", completed: true },
-          { label: "Display | Business Name", completed: true },
-          { label: "Description", completed: true },
-          { label: "Signature Verification", completed: true },
+          { label: "GSTIN", completed: formData.gstIN ? true: false },
+          { label: "Full Company Name", completed: formData.companyName ? true: false },
+          { label: "Display | Business Name", completed: formData.displayName ? true: false },
+          { label: "Description", completed: formData.description ? true: false },
+          { label: "Signature Verification", completed: formData.signature ? true: false },
         ],
       },
       {
         title: "Store & Pickup Details",
         items: [
-          { label: "Pickup Address", completed: true },
-          { label: "State", completed: true },
-          { label: "City", completed: true },
+          { label: "Pickup Address", completed: formData.address ? true: false },
+          { label: "State", completed: formData.state ? true: false },
+          { label: "City", completed: formData.city ? true: false },
         ],
       },
       // {
@@ -41,7 +78,7 @@ export default function OnboardingStatus() {
   };
 
   return (
-    <div className="w-[60%] rounded-lg border border-appGreen shadow-md">
+    <div className="w-full xl:w-[90%] 2xl:w-[75%] rounded-lg border border-appGreen shadow-md">
       <div className=" bg-[#D2EEDF]">
         <p className="text-lg font-medium text-appText p-3 ">
           Your onboarding completion status

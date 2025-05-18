@@ -8,7 +8,7 @@ export const FormProvider = ({ children }) => {
   const [formData, setFormData] = useState({
     mobileNum: "",
     email: "",
-    gstNum: "",
+    // gstNum: "",
     password: "",
     confirmPassword:"",
     gstIN: "",
@@ -20,7 +20,10 @@ export const FormProvider = ({ children }) => {
     state: "",
     city: "",
     pincode: "",
-    // signature: "",
+    legalName: "CHUNNILAAL AGRO PRIVATE LIMITED",
+    stateName:"Madhya Pradesh",
+    pan:"BBYCB0336J",
+    bussNature:"Private Limited Company"
     // add more fields as needed
   });
 

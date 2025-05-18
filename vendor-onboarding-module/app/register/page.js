@@ -8,25 +8,25 @@ import { useState } from "react";
 import { useFormContext } from "../context/FormContext";
 export default function Page() {
   const router = useRouter();
-  const [mobileNum, setMobileNum] = useState("");
-  const [email, setEmail] = useState("");
-  const [gst, setGst] = useState("");
+  // const [mobileNum, setMobileNum] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [gst, setGst] = useState("");
   const [errors, setErrors] = useState({});
   const { formData, updateFormData } = useFormContext();
 
   const handleMobile = (e) => {
-    setMobileNum(e.target.value);
+    
     updateFormData("mobileNum", e.target.value);
   };
 
   const handleEmail = (e) => {
-    setEmail(e.target.value);
+    
     updateFormData("email", e.target.value);
   };
 
   const handleGST = (e) => {
-    setGst(e.target.value);
-    updateFormData("gstNum", e.target.value);
+    
+    updateFormData("gstIN", e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -34,18 +34,23 @@ export default function Page() {
 
     const newErrors = {};
 
-    if (!/^\d{10}$/.test(mobileNum)) {
+    if (!/^\d{10}$/.test(formData.mobileNum)) {
       newErrors.mobileNum = "Mobile number must be 10 digits";
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(formData.email)) {
       newErrors.email = "Invalid email address";
     }
 
-    if (gst && !/^[0-9A-Z]{15}$/.test(gst)) {
-      newErrors.gst = "GST must be 15 uppercase alphanumeric characters";
-    }
+     if (
+  formData.gstIN &&
+  !/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(formData.gstIN)
+) {
+  newErrors.gst = "Enter a valid 15-character GSTIN (e.g., 22ABCDE1234F1Z5)";
+}
+
+
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -67,9 +72,9 @@ export default function Page() {
         <div className="w-full md:w-2/4 bg-white p-4 space-y-8">
           <div className="relative">
             <input
-              value={mobileNum}
+              value={formData.mobileNum || ""}
               onChange={handleMobile}
-              type="text"
+              type="number"
               id="mobile_number"
               className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
               placeholder=""
@@ -87,7 +92,7 @@ export default function Page() {
 
           <div className="relative">
             <input
-              value={email}
+              value={formData.email || ""}
               onChange={handleEmail}
               type="text"
               id="email_id"
@@ -106,7 +111,7 @@ export default function Page() {
           )}
           <div className="relative">
             <input
-              value={gst}
+              value={formData.gstIN || ""}
               onChange={handleGST}
               type="text"
               id="gst"
