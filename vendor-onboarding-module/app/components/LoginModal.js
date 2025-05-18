@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 import { IoClose } from "react-icons/io5";
@@ -47,14 +48,14 @@ const LoginModal = ({ isOpen, onClose }) => {
     } else {
       setError(data.error || "Invalid OTP");
     }
+    onClose();
   };
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
       router.push("/register/dashboard");
     }
-  }, []);
-
+  }, [router]);
   return (
     <>
       {/* Backdrop */}
@@ -87,7 +88,6 @@ const LoginModal = ({ isOpen, onClose }) => {
                 className="w-full border border-gray-300 px-3 py-2 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-green-500"
               />
               <button
-                
                 className="cursor-pointer w-full bg-appGreen text-white py-2 rounded hover:bg-green-700 transition"
                 onClick={sendOtp}
               >
@@ -117,7 +117,6 @@ const LoginModal = ({ isOpen, onClose }) => {
             </p>
           </>
         ) : (
-
           // OTP Component
           <>
             <div>
@@ -139,12 +138,12 @@ const LoginModal = ({ isOpen, onClose }) => {
                   })}
                 </div> */}
                 <input
-              type="text"
-              placeholder="Enter OTP"
-              value={otp}
-              onChange={(e) => setOtp(e.target.value)}
-              className="w-full p-2 border rounded"
-            />
+                  type="text"
+                  placeholder="Enter OTP"
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value)}
+                  className="w-full p-2 border rounded"
+                />
               </form>
               <div className="w-full h-full  px-2 rounded mt-2 flex justify-between items-center">
                 <button className="w-3/8 h-full bg-white text-appDarkGreen flex justify-center items-center text-sm">

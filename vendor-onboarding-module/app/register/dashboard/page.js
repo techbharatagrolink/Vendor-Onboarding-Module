@@ -15,6 +15,11 @@ import { useFormContext } from "@/app/context/FormContext";
 
 export default function Page() {
   const router = useRouter();
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      router.push("/");
+    }
+  }, [router]);
   const { formData, updateFormData } = useFormContext();
   const [fieldEnabled, setFieldEnabled] = useState(false);
 
@@ -111,11 +116,6 @@ export default function Page() {
       updateFormData("state", "");
     }
   }
-    useEffect(() => {
-      if (!localStorage.getItem("token")) {
-        router.push("/");
-      }
-    }, []);
 
   const handleSubmit = () => {
     if (validateForm()) {
@@ -160,71 +160,74 @@ export default function Page() {
   //       !value || !gstRegex.test(value) ? "Enter a valid GSTIN." : undefined,
   //   }));
   // };
-async function handleGST(e) {
-  const newGstin = e.target.value.toUpperCase();
-  console.log(newGstin)
-  updateFormData("gstIN", newGstin);
+  async function handleGST(e) {
+    const newGstin = e.target.value.toUpperCase();
+    console.log(newGstin);
+    updateFormData("gstIN", newGstin);
 
-  const gstinRegex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
+    const gstinRegex =
+      /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
 
-  if (gstinRegex.test(newGstin)) {
-    try {
-      const response = await fetch(`/api/gstin?gstin=${newGstin}&action=TP`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      console.log(response)
+    if (gstinRegex.test(newGstin)) {
+      try {
+        const response = await fetch(`/api/gstin?gstin=${newGstin}&action=TP`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        console.log(response);
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch GSTIN data");
-      }
+        if (!response.ok) {
+          throw new Error("Failed to fetch GSTIN data");
+        }
 
-      const result = await response.json();
-      const info = result.data?.data;
-console.log(info)
-      if (info?.legalName && info?.bussNature && info?.pan && info?.stateName) {
-        updateFormData("legalName", info.legalName); // Legal name
-        updateFormData("pan", info.pan); // Extract PAN from GSTIN
-        updateFormData("bussNature", info.bussNature); // Constitution of business
-        updateFormData("stateName", info.stateName); // State code
-        setErrors((prev) => ({ ...prev, gstIN: "" }));
-      } else {
+        const result = await response.json();
+        const info = result.data?.data;
+        console.log(info);
+        if (
+          info?.legalName &&
+          info?.bussNature &&
+          info?.pan &&
+          info?.stateName
+        ) {
+          updateFormData("legalName", info.legalName); // Legal name
+          updateFormData("pan", info.pan); // Extract PAN from GSTIN
+          updateFormData("bussNature", info.bussNature); // Constitution of business
+          updateFormData("stateName", info.stateName); // State code
+          setErrors((prev) => ({ ...prev, gstIN: "" }));
+        } else {
+          updateFormData("legalName", "");
+          updateFormData("pan", "");
+          updateFormData("bussNature", "");
+          updateFormData("stateName", "");
+          setErrors((prev) => ({
+            ...prev,
+            gstIN: "Incomplete or invalid GSTIN data.",
+          }));
+        }
+      } catch (error) {
+        console.error("Error fetching GSTIN:", error.message);
         updateFormData("legalName", "");
         updateFormData("pan", "");
         updateFormData("bussNature", "");
         updateFormData("stateName", "");
         setErrors((prev) => ({
           ...prev,
-          gstIN: "Incomplete or invalid GSTIN data.",
+          gstIN: "Failed to fetch GSTIN data. Please try again.",
         }));
       }
-    } catch (error) {
-      console.error("Error fetching GSTIN:", error.message);
+    } else {
       updateFormData("legalName", "");
       updateFormData("pan", "");
       updateFormData("bussNature", "");
       updateFormData("stateName", "");
       setErrors((prev) => ({
         ...prev,
-        gstIN: "Failed to fetch GSTIN data. Please try again.",
+        gstIN: "Invalid GSTIN format.",
       }));
     }
-  } else {
-    updateFormData("legalName", "");
-    updateFormData("pan", "");
-    updateFormData("bussNature", "");
-    updateFormData("stateName", "");
-    setErrors((prev) => ({
-      ...prev,
-      gstIN: "Invalid GSTIN format.",
-    }));
   }
-}
-
-
-
 
   const handleGstEdit = () => {
     if (fieldEnabled === true) {
@@ -333,13 +336,12 @@ console.log(info)
           {errors.gstIN && (
             <p className="text-appRed text-sm">{errors.gstIN}</p>
           )}
-              <div className="bg-[#D2EEDF] text-appText rounded-lg p-4 shadow-sm w-full max-w-md">
-      <h2 className="text-lg font-semibold mb-1">{formData.legalName}</h2>
-      <p className="text-sm font-medium">{formData.pan}</p>
-      <p className="text-sm mb-1">{formData.bussNature}</p>
-      <p className="text-sm">{formData.stateName}</p>
-      
-    </div> 
+          <div className="bg-[#D2EEDF] text-appText rounded-lg p-4 shadow-sm w-full max-w-md">
+            <h2 className="text-lg font-semibold mb-1">{formData.legalName}</h2>
+            <p className="text-sm font-medium">{formData.pan}</p>
+            <p className="text-sm mb-1">{formData.bussNature}</p>
+            <p className="text-sm">{formData.stateName}</p>
+          </div>
           <p className="text-sm text-appText">
             GSTIN is required to sell products on Bharat Agrolink.
           </p>

@@ -4,28 +4,30 @@ import { useRouter } from "next/navigation";
 import ProgressStepper from "../components/ProgressStepper";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useFormContext } from "../context/FormContext";
 export default function Page() {
   const router = useRouter();
   // const [mobileNum, setMobileNum] = useState("");
   // const [email, setEmail] = useState("");
   // const [gst, setGst] = useState("");
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      router.push("/");
+    }
+  }, [router]);
   const [errors, setErrors] = useState({});
   const { formData, updateFormData } = useFormContext();
 
   const handleMobile = (e) => {
-    
     updateFormData("mobileNum", e.target.value);
   };
 
   const handleEmail = (e) => {
-    
     updateFormData("email", e.target.value);
   };
 
   const handleGST = (e) => {
-    
     updateFormData("gstIN", e.target.value);
   };
 
@@ -43,14 +45,15 @@ export default function Page() {
       newErrors.email = "Invalid email address";
     }
 
-     if (
-  formData.gstIN &&
-  !/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(formData.gstIN)
-) {
-  newErrors.gst = "Enter a valid 15-character GSTIN (e.g., 22ABCDE1234F1Z5)";
-}
-
-
+    if (
+      formData.gstIN &&
+      !/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(
+        formData.gstIN
+      )
+    ) {
+      newErrors.gst =
+        "Enter a valid 15-character GSTIN (e.g., 22ABCDE1234F1Z5)";
+    }
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);

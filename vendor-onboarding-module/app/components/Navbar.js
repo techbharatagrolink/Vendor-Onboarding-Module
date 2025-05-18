@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { HiMenu, HiX } from "react-icons/hi";
 
@@ -11,6 +11,17 @@ export default function Navbar() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [loggedInNavbar, setLoggedInNavbar] = useState(false);
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      // router.push("/register/dashboard");
+      setLoggedInNavbar(true);
+    }
+  }, [router]);
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Remove token from localStorage
+    router.push("/"); // Redirect to homepage or login page
+  };
 
   return (
     <>
@@ -28,45 +39,52 @@ export default function Navbar() {
               />
             </button>
 
-            <div className="hidden md:flex space-x-6 ml-6">
-              <Link href="/" className="font-medium">
-                Sell Online
-              </Link>
-              <Link href="/" className="font-medium">
-                Fees and Commission
-              </Link>
-              <Link href="/" className="font-medium">
-                Grow
-              </Link>
-              <Link href="#" className="font-medium">
-                Learn
-              </Link>
-            </div>
+            {!loggedInNavbar && (
+              <div className="hidden md:flex space-x-6 ml-6">
+                <Link href="/" className="font-medium">
+                  Sell Online
+                </Link>
+                <Link href="/" className="font-medium">
+                  Fees and Commission
+                </Link>
+                <Link href="/" className="font-medium">
+                  Grow
+                </Link>
+                <Link href="#" className="font-medium">
+                  Learn
+                </Link>
+              </div>
+            )}
           </div>
 
           {/* Desktop Buttons */}
-          <div className="hidden md:flex space-x-4">
-            <button
-              // href="/"
-              onClick={() => setShowLogin(true)}
-              className="cursor-pointer text-appText font-medium my-auto"
-            >
-              Login
-            </button>
-            {/* <button
-              // href="/"
-              
-              className="cursor-pointer text-appText font-medium my-auto"
-            >
-              <a href="/login">Login</a> 
-            </button> */}
-            <a
-              href="/register"
-              className="text-black font-bold bg-appYellow hover:bg-appDarkYellow hover:text-white transition duration-200 px-5 py-3 rounded-sm"
-            >
-              Start Selling
-            </a>
-          </div>
+          {loggedInNavbar ? (
+            <div className="hidden md:flex space-x-4">
+              <button
+                onClick={handleLogout}
+                className="text-appGreen font-bold"
+              >
+                LOGOUT
+              </button>
+            </div>
+          ) : (
+            <div className="hidden md:flex space-x-4">
+              <button
+                // href="/"
+                onClick={() => setShowLogin(true)}
+                className="cursor-pointer text-appText font-medium my-auto"
+              >
+                Login
+              </button>
+
+              <a
+                href="/register"
+                className="text-black font-bold bg-appYellow hover:bg-appDarkYellow hover:text-white transition duration-200 px-5 py-3 rounded-sm"
+              >
+                Start Selling
+              </a>
+            </div>
+          )}
 
           {/* Hamburger Menu (Mobile) */}
           <div className="md:hidden">
@@ -111,7 +129,11 @@ export default function Navbar() {
           </div>
         )}
       </nav>
-      <LoginModal isOpen={showLogin} onClose={() => setShowLogin(false)} />
+      <LoginModal
+        key={showLogin ? "login-modal-open" : "login-modal-closed"}
+        isOpen={showLogin}
+        onClose={() => setShowLogin(false)}
+      />
     </>
   );
 }

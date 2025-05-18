@@ -49,7 +49,7 @@ export default function LoginPage() {
     if (localStorage.getItem("token")) {
       router.push("/dashboard");
     }
-  }, []);
+  }, [router]);
 
   return (
     <div className="flex min-h-screen justify-center items-center bg-gray-100">

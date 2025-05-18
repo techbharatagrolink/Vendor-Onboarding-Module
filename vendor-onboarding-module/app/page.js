@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Navbar from "./components/Navbar";
 import HeroSectionLandingPage from "./components/HeroSectionLandingPage";
@@ -12,8 +14,16 @@ import QueryFormLandingPage from "./components/QueryFormLandingPage";
 import Footer from "./components/Footer";
 import FooterNote from "./components/FooterNote";
 import { FormProvider } from "./context/FormContext";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      router.push("/register/dashboard");
+    }
+  }, [router]);
   return (
     <>
       <FormProvider>
