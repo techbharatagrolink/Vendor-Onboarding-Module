@@ -21,35 +21,67 @@ export default function PasswordOnboarding() {
 
   const router = useRouter();
 
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-    updateFormData("password", password);
+  const handlePassword = (e) => {    
+    updateFormData("password", e.target.value);
   };
   const handleConfirmPassword = (e) => {
-    setConfirmPassword(e.target.value);
-    updateFormData("confirmPassword", confirmPassword);
+    updateFormData("confirmPassword", e.target.value);
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const newErrors = {};
+  const newErrors = {};
 
-    if (password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
-    }
+  if (!formData.password || formData.password.length < 6) {
+    newErrors.password = "Password must be at least 6 characters";
+  }
 
-    if (password !== confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
-    }
+  if (formData.password !== formData.confirmPassword) {
+    newErrors.confirmPassword = "Passwords do not match";
+  }
 
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+  if (Object.keys(newErrors).length > 0) {
+    setErrors(newErrors);
+    return;
+  }
+
+  try {
+    // const res = await fetch('/api/register', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     number: formData.mobileNum,
+    //     email: formData.email,
+    //     gst: formData.gst,
+    //     password: formData.password,
+    //   }),
+    // });
+    const res = await fetch("/api/register", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    number: formData.mobileNum,
+    email: formData.email,
+    gst: formData.gstIN, // ← This should be GST, not email again!
+    password: formData.password,
+  }),
+});
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.error || 'Registration failed');
       return;
     }
 
-    // Passed: proceed to next page
+    alert(data.message || 'Registered successfully');
     router.push("/register/dashboard");
-  };
+  } catch (error) {
+    alert('Something went wrong. Please try again.');
+    console.error(error);
+  }
+};
+
 
   return (
     <div className=" p-4 bg-white">
@@ -62,7 +94,7 @@ export default function PasswordOnboarding() {
         <div className="w-full md:w-2/4 bg-white p-4 space-y-8">
           <div className="relative w-full sm:w-full md:w-full lg:w-full xl:w-full 2xl:w-[72%]">
   <input
-    value={password}
+    value={formData.password||""}
     onChange={handlePassword}
     type={showPassword ? "text" : "password"}
     id="password_input"
@@ -92,7 +124,7 @@ export default function PasswordOnboarding() {
           <div className="relative w-full sm:w-full md:w-full lg:w-full xl:w-full 2xl:w-[72%]">
 
   <input
-    value={confirmPassword}
+    value={formData.confirmPassword||""}
     onChange={handleConfirmPassword}
     type={showConfirmPassword ? "text" : "password"}
     id="confirm_password_input"
