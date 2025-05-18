@@ -22,7 +22,7 @@ const LoginModal = ({ isOpen, onClose }) => {
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold text-appText">Login</h2>
           <button onClick={onClose}>
-            <IoClose className="w-5 h-5 text-appText" />
+            <IoClose className="cursor-pointer w-5 h-5 text-appText" />
           </button>
         </div>
 
@@ -34,7 +34,7 @@ const LoginModal = ({ isOpen, onClose }) => {
           />
           <button
             type="submit"
-            className="w-full bg-appGreen text-white py-2 rounded hover:bg-green-700 transition"
+            className="cursor-pointer w-full bg-appGreen text-white py-2 rounded hover:bg-green-700 transition"
           >
             Next
           </button>
@@ -46,7 +46,7 @@ const LoginModal = ({ isOpen, onClose }) => {
         <div className="flex justify-center mt-2">
           <button
             type="button"
-            className="border border-appGreen text-appGreen text-sm px-6 py-3 rounded hover:bg-green-50 transition"
+            className="cursor-pointer border border-appGreen text-appGreen text-sm px-6 py-3 rounded hover:bg-green-50 transition"
           >
             Register for new account
           </button>

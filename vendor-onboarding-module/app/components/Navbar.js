@@ -18,17 +18,17 @@ export default function Navbar() {
         <div className="flex justify-between items-center">
           {/* Logo + Links */}
           <div className="flex items-center text-appText">
-            <button onClick={()=>router.push('/')} className="cursor-pointer"><Image
-              src="/logo1.svg"
-              alt="Logo"
-              width={140}
-              height={40}
-              className="mr-3"
-              
-            /></button>
-            
+            <button onClick={() => router.push("/")} className="cursor-pointer">
+              <Image
+                src="/logo1.svg"
+                alt="Logo"
+                width={140}
+                height={40}
+                className="mr-3"
+              />
+            </button>
+
             <div className="hidden md:flex space-x-6 ml-6">
-              
               <Link href="/" className="font-medium">
                 Sell Online
               </Link>
@@ -49,7 +49,7 @@ export default function Navbar() {
             <button
               // href="/"
               onClick={() => setShowLogin(true)}
-              className="text-appText font-medium my-auto"
+              className="cursor-pointer text-appText font-medium my-auto"
             >
               Login
             </button>

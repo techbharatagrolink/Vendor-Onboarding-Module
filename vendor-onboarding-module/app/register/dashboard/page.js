@@ -15,15 +15,8 @@ import { useFormContext } from "@/app/context/FormContext";
 export default function Page() {
   const { formData, updateFormData } = useFormContext();
 
-  const [gstIn, setGstIn] = useState("");
-  const [companyName, setCompanyName] = useState("");
-  const [displayName, setDisplayName] = useState("");
-  const [description, setDescription] = useState("");
-  const [address, setAddress] = useState("");
-  const [state, setState] = useState("Your State");
-  const [city, setCity] = useState("Your City");
-  const [pincode, setPincode] = useState("");
   const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const validateForm = () => {
     const newErrors = {};
@@ -66,47 +59,51 @@ export default function Page() {
     return Object.keys(newErrors).length === 0;
   };
 
-  // const [errorInPINCode, setErrorInPINCode] = useState(null);
-
-  // async function handlePINCode() {
-  //   console.log("OK");
-  //   const data = await fetch(
-  //     "https://cors-anywhere.herokuapp.com/https://api.postalpincode.in/pincode/744104",
-  //     {
-  //       method: "GET",
-  //     }
-  //   );
-  //   const posts = await data.json();
-  //   console.log(posts[0].PostOffice[0].Division);
-  //   console.log(posts[0].PostOffice[0].State);
-  // }
   async function setStateandCity(e) {
     const newPin = e.target.value;
-    setPincode(newPin);
-    if (newPin.length === 6) {
-      const data = await fetch(
-        `https://cors-anywhere.herokuapp.com/https://api.postalpincode.in/pincode/${newPin}`
-      );
-      const posts = await data.json();
-      if (posts[0].PostOffice) {
-        const newCity = posts[0].PostOffice[0].District;
-        const newState = posts[0].PostOffice[0].State;
-        setCity(newCity);
-        setState(newState);
 
-        // Update formData here, using new values directly
-        updateFormData("pincode", newPin);
-        updateFormData("city", newCity);
-        updateFormData("state", newState);
-      } else {
-        // Handle invalid pincode
-        updateFormData("pincode", newPin);
+    updateFormData("pincode", newPin);
+
+    if (newPin.length === 6) {
+      try {
+        const response = await fetch(`/api/pincode?pincode=${newPin}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch pincode data");
+        }
+
+        const posts = await response.json();
+
+        if (posts[0]?.PostOffice) {
+          const newCity = posts[0].PostOffice[0].District;
+          const newState = posts[0].PostOffice[0].State;
+
+          updateFormData("city", newCity);
+          updateFormData("state", newState);
+        } else {
+          updateFormData("city", "");
+          updateFormData("state", "");
+          setErrors((prev) => ({
+            ...prev,
+            pincode: "Invalid pincode. No data found.",
+          }));
+        }
+      } catch (error) {
+        console.error("Error fetching pincode:", error.message);
+
         updateFormData("city", "");
         updateFormData("state", "");
+        setErrors((prev) => ({
+          ...prev,
+          pincode: "Failed to fetch pincode data. Please try again.",
+        }));
       }
     } else {
-      // Pincode less than 6 characters
-      updateFormData("pincode", newPin);
       updateFormData("city", "");
       updateFormData("state", "");
     }
@@ -119,35 +116,55 @@ export default function Page() {
       console.log("Validation failed");
     }
   };
+  //   const handleSubmit = async () => {
+  //   if (validateForm()) {
+  //     try {
+  //       const response = await fetch("/api/register", {
+  //         method: "POST",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify(formData),
+  //       });
+  //       if (response.ok) {
+  //         console.log("Form submitted successfully");
+  //         // Navigate to next step or show success message
+  //       } else {
+  //         setErrors({ submit: "Failed to submit form. Please try again." });
+  //       }
+  //     } catch (error) {
+  //       setErrors({ submit: "Network error. Please check your connection." });
+  //     }
+  //   } else {
+  //     console.log("Validation failed");
+  //   }
+  // };
 
+  // const handleGST = (e) => {
+  //   updateFormData("gstIN", e.target.value);
+  // };
   const handleGST = (e) => {
     const value = e.target.value;
-    setGstIn(value);
+    const gstRegex =
+      /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
     updateFormData("gstIN", value);
+    setErrors((prev) => ({
+      ...prev,
+      gstIN:
+        !value || !gstRegex.test(value) ? "Enter a valid GSTIN." : undefined,
+    }));
   };
-
   const handleCompanyName = (e) => {
-    const value = e.target.value;
-    setCompanyName(value);
-    updateFormData("companyName", value);
+    updateFormData("companyName", e.target.value);
   };
   const handleDisplayName = (e) => {
-    const value = e.target.value;
-    setDisplayName(value);
-    updateFormData("displayName", value);
+    updateFormData("displayName", e.target.value);
   };
   const handleDescription = (e) => {
-    const value = e.target.value;
-    setDescription(value);
-    updateFormData("description", value);
+    updateFormData("description", e.target.value);
   };
   const handleAddress = (e) => {
-    const value = e.target.value;
-    setAddress(value);
-    updateFormData("address", value);
+    updateFormData("address", e.target.value);
   };
   const handlePinCode = (e) => {
-    setPincode(e.target.value);
     setStateandCity(e);
   };
 
@@ -176,7 +193,9 @@ export default function Page() {
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center space-x-2">
                 <DevicePhoneMobileIcon className="h-5 w-5 text-appText" />
-                <span className="text-sm text-appText">+919302832696</span>
+                <span className="text-sm text-appText">
+                  +91{formData.mobileNum}
+                </span>
               </div>
               <span className="bg-[#D2EEDF] text-appGreen text-xs px-3 py-1 rounded-full font-semibold">
                 Verified
@@ -187,7 +206,7 @@ export default function Page() {
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <EnvelopeIcon className="h-5 w-5 text-appText" />
-                <span className="text-sm text-appText">my_email@gmail.com</span>
+                <span className="text-sm text-appText">{formData.email}</span>
               </div>
               <button className="text-xs text-appGreen hover:underline font-medium">
                 Resend Email
@@ -195,7 +214,7 @@ export default function Page() {
             </div>
           </div>
 
-          <hr className="text-appText"></hr>
+          <hr className="border-appGrey my-4" />
 
           {/* Phone and email section */}
           {/* ID and Signature Verification */}
@@ -206,9 +225,9 @@ export default function Page() {
             <input
               type="text"
               id="gst_input"
-              className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
+              className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:text-appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
               placeholder=""
-              value={gstIn}
+              value={formData.gstIN || ""}
               // onChange={(e)=>setGstIn(e.target.value)}
               // onChange={(e)=>updateFormData("gstIN", e.target.value)}
               onChange={handleGST}
@@ -230,9 +249,9 @@ export default function Page() {
             <input
               type="text"
               id="company_name"
-              className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
+              className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:text-appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
               placeholder=""
-              value={companyName}
+              value={formData.companyName || ""}
               // onChange={(e)=>setCompanyName(e.target.value)}
               onChange={handleCompanyName}
             />
@@ -250,9 +269,9 @@ export default function Page() {
             <input
               type="text"
               id="display_name"
-              className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
+              className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:text-appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
               placeholder=""
-              value={displayName}
+              value={formData.displayName || ""}
               // onChange={(e)=>setDisplayName(e.target.value)}
               onChange={handleDisplayName}
             />
@@ -270,9 +289,9 @@ export default function Page() {
             <textarea
               type="text"
               id="description"
-              className="block h-30 px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
+              className="block h-30 px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:text-appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
               placeholder=""
-              value={description}
+              value={formData.description || ""}
               // onChange={(e)=>setDescription(e.target.value)}
               onChange={handleDescription}
             />
@@ -287,7 +306,7 @@ export default function Page() {
             <p className="text-appRed text-sm">{errors.description}</p>
           )}
           <SignaturePadSection />
-          <hr className="text-appText"></hr>
+          <hr className="border-appGrey my-4" />
           {/* ID and Signature Verification */}
 
           <h2 className="text-sm font-medium text-appText mb-4">
@@ -297,10 +316,10 @@ export default function Page() {
             <input
               type="text"
               id="address_line"
-              value={address}
+              value={formData.address || ""}
               // onChange={(e) => setAddress(e.target.value)}
               onChange={handleAddress}
-              className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
+              className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:text-appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
               placeholder=""
             />
             <label
@@ -318,11 +337,12 @@ export default function Page() {
             <input
               type="number"
               id="pincode"
-              value={pincode}
+              value={formData.pincode || ""}
               // onChange={(e) => setStateandCity(e)}
-              onChange={handlePinCode}
-              className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
+              onChange={setStateandCity}
+              className="block px-2.5 pb-2.5 pt-4 w-full sm:w-[full] md:w-full lg:w-full xl:w-full 2xl:w-[72%] text-sm text-appText bg-transparent rounded-lg border-1 border-appGrey appearance-none dark:text-appText dark:text-appText  focus:outline-none focus:ring-0 focus:border-black-600 peer"
               placeholder=""
+              disabled={isLoading}
             />
             <label
               htmlFor="pincode"
@@ -331,6 +351,9 @@ export default function Page() {
               PIN Code<span className="text-appRed">{" *"}</span>
             </label>
           </div>
+          {isLoading && (
+            <p className="text-sm text-appText">Fetching pincode data...</p>
+          )}
           {errors.pincode && (
             <p className="text-appRed text-sm">{errors.pincode}</p>
           )}
@@ -340,7 +363,7 @@ export default function Page() {
               id="city"
               className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-appText rounded-lg border border-appGrey appearance-none dark:text-appText focus:outline-none peer"
               placeholder=""
-              value={city} // default pre-filled value
+              value={formData.city || ""} // default pre-filled value
               disabled
             />
             <label
@@ -357,7 +380,7 @@ export default function Page() {
               id="state"
               className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-appText rounded-lg border border-appGrey appearance-none dark:text-appText focus:outline-none peer"
               placeholder=""
-              value={state} // default pre-filled value
+              value={formData.state || ""} // default pre-filled value
               disabled
             />
             <label
@@ -387,12 +410,14 @@ export default function Page() {
 
           {/* Submit Button */}
           <button
+            type="submit"
             onClick={handleSubmit}
-            className="w-[70%] bg-appGreen text-white py-2 rounded flex items-center justify-center gap-2 hover:bg-green-700 transition"
+            className="cursor-pointer w-[70%] bg-appGreen text-white py-2 rounded flex items-center justify-center gap-2 hover:bg-green-700 transition"
+            aria-label="Register and continue"
           >
-            <a>Register & Continue</a>
-            <span className="text-xl">&rarr;</span>
+            Register & Continue <span className="text-xl">→</span>
           </button>
+          {/* {errors.submit && <p className="text-appRed text-sm">{errors.submit}</p>} */}
         </div>
 
         {/* Right Column (25%) */}
@@ -401,7 +426,7 @@ export default function Page() {
             <div className="flex items-start gap-3">
               {/* Profile Image */}
               <img
-                src="/Group 2.png" // replace with your image path
+                src="/Group 2.png"
                 alt="Swastik Arya"
                 className="w-10 h-10 rounded-full object-cover"
               />
