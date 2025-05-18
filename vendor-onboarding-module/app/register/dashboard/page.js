@@ -63,6 +63,10 @@ export default function Page() {
       newErrors.state = "State not found. Check pincode.";
     }
 
+    if (!formData.legalName) {
+      newErrors.gstIN = "GST Not Verified";
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -160,6 +164,16 @@ export default function Page() {
   //       !value || !gstRegex.test(value) ? "Enter a valid GSTIN." : undefined,
   //   }));
   // };
+  function extractPanFromGstin(newGstin) {
+    const gstinRegex =
+      /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
+
+    if (!gstinRegex.test(newGstin)) {
+      throw new Error("Invalid GSTIN format. Cannot extract PAN.");
+    }
+
+    return newGstin.substring(2, 12); // Characters 3 to 12 (0-based index: 2 to 11)
+  }
   async function handleGST(e) {
     const newGstin = e.target.value.toUpperCase();
     console.log(newGstin);
@@ -194,8 +208,10 @@ export default function Page() {
           info?.gstin &&
           info?.pradr.addr.stcd
         ) {
+          let GST = info.gstin;
+          const pan = extractPanFromGstin(GST);
           updateFormData("legalName", info.tradeNam); // Legal name
-          updateFormData("pan", info.gstin); // Extract PAN from GSTIN
+          updateFormData("pan", pan); // Extract PAN from GSTIN
           updateFormData("bussNature", info.ctb); // Constitution of business
           updateFormData("stateName", info.pradr.addr.stcd); // State code
           setErrors((prev) => ({ ...prev, gstIN: "" }));
@@ -339,7 +355,11 @@ export default function Page() {
           {errors.gstIN && (
             <p className="text-appRed text-sm">{errors.gstIN}</p>
           )}
-          <div className="bg-[#D2EEDF] text-appText rounded-lg p-4 shadow-sm w-full max-w-md">
+          <div
+            className={`${
+              formData.legalName === "" ? "hidden" : null
+            } bg-[#D2EEDF] text-appText rounded-lg p-4 shadow-sm w-full max-w-md`}
+          >
             <h2 className="text-lg font-semibold mb-1">{formData.legalName}</h2>
             <p className="text-sm font-medium">{formData.pan}</p>
             <p className="text-sm mb-1">{formData.bussNature}</p>

@@ -10,20 +10,20 @@ export const FormProvider = ({ children }) => {
     email: "",
     // gstNum: "",
     password: "",
-    confirmPassword:"",
+    confirmPassword: "",
     gstIN: "",
-    companyName:"",
-    displayName:"",
-    description:"",
+    companyName: "",
+    displayName: "",
+    description: "",
     // signature:"",
     address: "",
     state: "",
     city: "",
     pincode: "",
-    legalName: "CHUNNILAAL AGRO PRIVATE LIMITED",
-    stateName:"Madhya Pradesh",
-    pan:"BBYCB0336J",
-    bussNature:"Private Limited Company"
+    legalName: "",
+    stateName: "",
+    pan: "",
+    bussNature: "",
     // add more fields as needed
   });
 
