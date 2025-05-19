@@ -1,89 +1,26 @@
-// // import { connectDB } from '@/lib/mongodb';
-// // import Vendor from "@/models/Vendor"; 
-
-// // import bcrypt from 'bcryptjs';
-
-// // export async function POST(req) {
-// //   await connectDB();
-// //   const { number, email, gst, password } = await req.json();
-
-// //   try {
-// //     const vendorExists = await Vendor.findOne({ email });
-// //     if (vendorExists) {
-// //       return Response.json({ error: 'Vendor already exists' }, { status: 400 });
-// //     }
-
-// //     const hashedPassword = await bcrypt.hash(password, 10);
-// //     const newVendor = await Vendor.create({
-// //       number,
-// //       email,
-// //       gst,
-// //       password: hashedPassword,
-// //     });
-
-// //     return Response.json({ message: 'Vendor registered successfully', vendor: newVendor });
-// //   } catch (error) {
-// //     return Response.json({ error: 'Registration failed', details: error.message }, { status: 500 });
-// //   }
-// // }
-
-// export async function POST(req) {
-//   await connectDB();
-
-//   try {
-//     const body = await req.json();
-//     console.log("Received body:", body);
-
-//     const { number, email, gst, password } = body;
-
-//     const vendorExists = await Vendor.findOne({ email });
-//     if (vendorExists) {
-//       return Response.json({ error: 'Vendor already exists' }, { status: 400 });
-//     }
-
-//     const hashedPassword = await bcrypt.hash(password, 10);
-
-//     const newVendor = await Vendor.create({
-//       number,
-//       email,
-//       gst,
-//       password: hashedPassword,
-//     });
-
-//     return Response.json({ message: 'Vendor registered successfully', vendor: newVendor });
-//   } catch (error) {
-//     console.error("Registration error:", error);
-//     return Response.json(
-//       { error: 'Registration failed', details: error.message },
-//       { status: 500 }
-//     );
-//   }
-// }
-
-import { connectDB } from '@/lib/mongodb';
-import Vendor from '@/models/Vendor';
-import bcrypt from 'bcryptjs';
+import { connectDB } from "@/lib/mongodb";
+import Vendor from "@/models/Vendor";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import { NextResponse } from "next/server";
 
 export async function POST(req) {
-  await connectDB();
-
   try {
+    await connectDB();
+
     const body = await req.json();
     const { number, email, gst, password } = body;
 
     if (!number || !email || !gst || !password) {
-      return new Response(JSON.stringify({ error: 'Missing fields' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      });
+      return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
     const vendorExists = await Vendor.findOne({ email });
     if (vendorExists) {
-      return new Response(JSON.stringify({ error: 'Vendor already exists' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      });
+      return NextResponse.json(
+        { error: "Vendor already exists" },
+        { status: 400 }
+      );
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -95,31 +32,36 @@ export async function POST(req) {
       password: hashedPassword,
     });
 
-    return new Response(
-      JSON.stringify({
-        message: 'Vendor registered successfully',
-        vendor: {
-          email: newVendor.email,
-          number: newVendor.number,
-          gst: newVendor.gst,
-        },
-      }),
-      {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      }
+    const token = jwt.sign(
+      { id: newVendor._id },
+      process.env.JWT_SECRET || "your-secret-key",
+      { expiresIn: "1d" }
     );
+
+    const response = NextResponse.json({
+      message: "Vendor registered successfully",
+      vendor: {
+        email: newVendor.email,
+        number: newVendor.number,
+        gst: newVendor.gst,
+      },
+    });
+
+    response.cookies.set("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 24 * 60 * 60, // 1 day
+      path: "/",
+    });
+
+    console.log(`Register: Vendor created, token set for ${email}`);
+    return response;
   } catch (error) {
-    console.error('API Error:', error);
-    return new Response(
-      JSON.stringify({
-        error: 'Internal Server Error',
-        details: error.message,
-      }),
-      {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      }
+    console.error("Register API: Error:", error.message);
+    return NextResponse.json(
+      { error: "Internal Server Error", details: error.message },
+      { status: 500 }
     );
   }
 }

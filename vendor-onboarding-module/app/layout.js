@@ -29,9 +29,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${lato.variable} antialiased`}
       >
-        <FormProvider>
-        {children}
-        </FormProvider>
+        <FormProvider>{children}</FormProvider>
       </body>
     </html>
   );
