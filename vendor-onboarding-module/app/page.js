@@ -16,8 +16,11 @@ import FooterNote from "./components/FooterNote";
 import { FormProvider } from "./context/FormContext";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Toast from "./components/Toast";
+import useToast from "@/hooks/useToast";
 
 export default function Home() {
+  const { toast, showToast, closeToast } = useToast();
   const router = useRouter();
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -27,7 +30,24 @@ export default function Home() {
   return (
     <>
       <FormProvider>
+        
         <Navbar />
+        <div>
+      <button
+        className="bg-appGreen text-white px-4 py-2 rounded"
+        onClick={() => showToast({ type: "success", message: "Form Submitted Successfully!" })}
+      >
+        Show Success
+      </button>
+      <button
+        className="bg-appRed text-white px-4 py-2 rounded ml-4"
+        onClick={() => showToast({ type: "error", message: "Something went wrong!" })}
+      >
+        Show Error
+      </button>
+
+      {toast && <Toast type={toast.type} message={toast.message} onClose={closeToast} />}
+    </div>
         <HeroSectionLandingPage />
         <NumbersandFiguresLandingPage />
         <WhySellSectionLandingPage />

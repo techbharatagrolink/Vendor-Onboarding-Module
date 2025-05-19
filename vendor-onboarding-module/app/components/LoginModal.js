@@ -56,6 +56,20 @@ const LoginModal = ({ isOpen, onClose }) => {
       router.push("/register/dashboard");
     }
   }, [router]);
+
+  const handleChange = (e) => {
+    const value = e.target.value.replace(/\D/g, ""); // Remove non-digits
+    if (value.length <= 6) {
+      setOtp(value);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Backspace" && otp.length > 0) {
+      e.preventDefault();
+      setOtp((prev) => prev.slice(0, -1));
+    }
+  };
   return (
     <>
       {/* Backdrop */}
@@ -101,6 +115,7 @@ const LoginModal = ({ isOpen, onClose }) => {
             <div className="flex justify-center mt-2">
               <button
                 type="button"
+                onClick={()=>router.push("/register")}
                 className="cursor-pointer border border-appGreen text-appGreen text-sm px-6 py-3 rounded hover:bg-green-50 transition"
               >
                 Register for new account
@@ -120,37 +135,62 @@ const LoginModal = ({ isOpen, onClose }) => {
           // OTP Component
           <>
             <div>
-              <form>
-                {/* <div className="w-full px-3 py-2 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-green-500 grid grid-cols-6 grid-rows-1">
-                  {otpDigits.map((digit, i) => {
-                    return (
-                      <input
-                        type="text"
-                        key={i}
-                        maxLength="1"
-                        onChange={(e) => handleOtpChange(e, i)}
-                        onKeyDown={(e) => handleKeyDown(e, i)}
-                        ref={(el) => (inputsRef.current[i] = el)}
-                        value={digit}
-                        className="my-auto mx-3 rounded-lg p-2 size-12 border-2 border-appGrey "
-                      />
-                    );
-                  })}
-                </div> */}
-                <input
-                  type="text"
-                  placeholder="Enter OTP"
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                  className="w-full p-2 border rounded"
-                />
+              <form onSubmit={(e) => e.preventDefault()}>
+                <div className="grid grid-cols-6 gap-2 mb-4">
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <input
+                      key={i}
+                      type="text"
+                      inputMode="numeric"
+                      maxLength="1"
+                      value={otp[i] || ""}
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/\D/g, "");
+                        if (!val) return;
+                        const otpArray = otp.split("");
+                        otpArray[i] = val[0];
+                        setOtp(otpArray.join(""));
+
+                        // Focus next
+                        const nextInput = document.getElementById(
+                          `otp-${i + 1}`
+                        );
+                        if (nextInput) nextInput.focus();
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === "Backspace") {
+                          e.preventDefault();
+                          const otpArray = otp.split("");
+                          otpArray[i] = "";
+                          setOtp(otpArray.join(""));
+
+                          // Focus previous
+                          const prevInput = document.getElementById(
+                            `otp-${i - 1}`
+                          );
+                          if (i > 0 && prevInput) prevInput.focus();
+                        }
+                      }}
+                      id={`otp-${i}`}
+                      className="text-center text-xl border border-gray-300 rounded-lg w-12 h-14 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    />
+                  ))}
+                </div>
               </form>
-              <div className="w-full h-full  px-2 rounded mt-2 flex justify-between items-center">
-                <button className="w-3/8 h-full bg-white text-appDarkGreen flex justify-center items-center text-sm">
+
+              <div className="flex justify-between mt-2">
+                <button
+                  type="button"
+                  className="cursor-pointer text-sm text-appDarkGreen"
+                  onClick={() => {
+                    // trigger resend logic if needed
+                    sendOtp(new Event("submit")); // dummy event to trigger resend
+                  }}
+                >
                   Resend OTP
                 </button>
                 <button
-                  className="w-3/8 rounded-lg h-full py-1.5 my-2 flex justify-center items-center bg-appDarkGreen text-white text-md"
+                  className="cursor-pointer rounded-lg px-6 py-2 bg-appDarkGreen text-white text-md"
                   onClick={verifyOtp}
                 >
                   Continue &rarr;

@@ -59,10 +59,10 @@ export default function Navbar() {
 
           {/* Desktop Buttons */}
           {loggedInNavbar ? (
-            <div className="hidden md:flex space-x-4">
+            <div className="pointer-cursor hidden md:flex space-x-4">
               <button
                 onClick={handleLogout}
-                className="text-appGreen font-bold"
+                className=" text-appGreen font-bold"
               >
                 LOGOUT
               </button>
