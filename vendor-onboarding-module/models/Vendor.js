@@ -4,7 +4,7 @@ const vendorSchema = new mongoose.Schema(
   {
     number: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
-    gst: { type: String, required: true },
+    gst: { type: String},
     password: { type: String, required: true },
     otp: { type: String },
     otpExpires: { type: Date }

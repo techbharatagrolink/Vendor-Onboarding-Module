@@ -11,8 +11,8 @@ export async function POST(req) {
     const body = await req.json();
     const { number, email, gst, password } = body;
 
-    if (!number || !email || !gst || !password) {
-      return NextResponse.json({ error: "Missing fields" }, { status: 400 });
+    if (!number || !email || !password) {
+      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
     const vendorExists = await Vendor.findOne({ email });
@@ -28,7 +28,7 @@ export async function POST(req) {
     const newVendor = await Vendor.create({
       number,
       email,
-      gst,
+      gst: gst || null,
       password: hashedPassword,
     });
 
