@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Toast from "./Toast";
+import useToast from "../../hooks/useToast";
 
 export default function QueryFormLandingPage() {
+  const { toast, showToast, closeToast } = useToast();
   const [form, setForm] = useState({
     name: "",
     contact1: "",
@@ -71,6 +74,12 @@ export default function QueryFormLandingPage() {
           />
           <button
             type="submit"
+            onClick={() =>
+              showToast({
+                type: "success",
+                message: "Query Sent Successfully!",
+              })
+            }
             className="bg-appGreen text-white px-6 py-2 rounded-md hover:bg-green-700 transition"
           >
             Send Query
@@ -88,6 +97,9 @@ export default function QueryFormLandingPage() {
           className="max-w-md w-full"
         />
       </div>
+      {toast && (
+        <Toast type={toast.type} message={toast.message} onClose={closeToast} />
+      )}
     </div>
   );
 }
