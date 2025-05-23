@@ -9,7 +9,7 @@ export default function LearnHeroSection() {
       <div className=" px-6 md:px-16">
 
         {/* BreadCrumb */}
-        <PageIdentifier pageName={"Grow"}/>
+        <PageIdentifier pageName={"Learn"}/>
 
 
         

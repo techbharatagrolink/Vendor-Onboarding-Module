@@ -16,10 +16,6 @@ export default function Page(){
         <LearnStickySection/>
         <Footer/>
         <FooterNote/>
-
-
         </>
-        
-
     )
 }

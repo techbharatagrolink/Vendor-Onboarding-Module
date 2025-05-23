@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-appGreen text-white w-full px-6 py-10">
@@ -99,34 +100,34 @@ export default function Footer() {
             </div> */}
             <h3 className="font-semibold mb-2">Stay Connected</h3>
             <div className="flex gap-3 mt-2">
-              <Image
+              <Link href="https://www.facebook.com/share/199Zdh62pe/?mibextid=qi2Omg" target="_blank"><Image
                 src="/facebook.svg"
                 alt="Logo"
                 width={30}
                 height={30}
                 // className="mr-1"
-              />
-              <Image
+              /></Link>
+              <Link href="https://www.instagram.com/bharat_agrolink?igsh=MW1tenRqZzQwcmt0Yw==" target="_blank"><Image
                 src="/instagram.svg"
                 alt="Logo"
                 width={30}
                 height={30}
                 // className="mr-1"
-              />
-              <Image
+              /></Link>
+              <Link href="https://www.linkedin.com/company/bharatagrolink/" target="_blank"><Image
                 src="/linkedin.svg"
                 alt="Logo"
                 width={30}
                 height={30}
                 // className="mr-1"
-              />
-              <Image
+              /></Link>
+              <Link href="https://youtube.com/@bharatagrolink?si=bMR94epkTXlKwnCM" target="_blank" className="my-auto"><Image
                 src="/youtube.svg"
                 alt="Logo"
                 width={30}
                 height={30}
                 // className="mr-1"
-              />
+              /></Link>
             </div>
           </div>
         </div>

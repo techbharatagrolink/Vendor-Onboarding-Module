@@ -98,8 +98,8 @@ export default function SneakPeakSectionLandingPage() {
           <Image
             src={slides[current].image}
             alt="image"
-            width={400}
-            height={300}
+            width={600}
+            height={400}
             // className="z-10"
           />
         </div>

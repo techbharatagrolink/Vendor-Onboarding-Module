@@ -12,17 +12,17 @@ const stories = [
     story: `At 23, I joined our family business, registered on Bharat Agrolink during the pandemic, became an Agro Seller, and achieved a 3 Crores turnover with Seller Support’s guidance. Growing every day!`,
   },
   {
-    name: "Sachin Sir",
+    name: "Sachin Rasaili",
     business: "Agrosmart Technologies",
     image: "/1699078522418.jpg",
     story: `At 23, I joined our family business, registered on Bharat Agrolink during the pandemic, became an Agro Seller, and achieved a 3 Crores turnover with Seller Support’s guidance. Growing every day!`,
   },
-  {
-    name: "Sachin Sir",
-    business: "Arth Krishi Yantra",
-    image: "/1699078522418.jpg",
-    story: `At 23, I joined our family business, registered on Bharat Agrolink during the pandemic, became an Agro Seller, and achieved a 3 Crores turnover with Seller Support’s guidance. Growing every day!`,
-  },
+  // {
+  //   name: "Sachin Sir",
+  //   business: "Arth Krishi Yantra",
+  //   image: "/1699078522418.jpg",
+  //   story: `At 23, I joined our family business, registered on Bharat Agrolink during the pandemic, became an Agro Seller, and achieved a 3 Crores turnover with Seller Support’s guidance. Growing every day!`,
+  // },
 ];
 
 export default function SellerSuccessStories() {
@@ -45,9 +45,9 @@ export default function SellerSuccessStories() {
           <p className="mt-4 text-lg text-white">
             Numerous sellers trust Bharat Agrolink for their online business.
           </p>
-          <button className="mt-6 px-4 py-2 border border-white text-white rounded hover:bg-white hover:text-green-500 transition">
+          {/* <button className="mt-6 px-4 py-2 border border-white text-white rounded hover:bg-white hover:text-green-500 transition">
             See All Stories
-          </button>
+          </button> */}
         </div>
 
         {/* Right Section */}
