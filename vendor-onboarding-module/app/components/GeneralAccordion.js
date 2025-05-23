@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const generalData = [
   {
@@ -26,12 +26,12 @@ const generalData = [
   {
     question: "What do I need to register to sell on bharatagrolink.com?",
     answer:
-      "To start selling on Bharat Agrolink, you’ll need the following:\n\n-Business details (name, type, address)\n- Contact information (valid email ID and mobile number)\n- Tax registration details, such as GSTIN (mandatory for taxable products) and PAN (mandatory for Book Sellers)",
+      "To start selling on Bharat Agrolink, you’ll need the following:\n\n- Business details (name, type, address)\n- Contact information (valid email ID and mobile number)\n- Tax registration details, such as GSTIN (mandatory for taxable products) and PAN (mandatory for Book Sellers)",
   },
   {
-    question: "I don't have a website; can I still sell on bharatagrolink.com?",
+    question: "I don't have a website. Can I still sell on bharatagrolink.com?",
     answer:
-      "Absolutely! You can sell on Bharatagrolink.com without having a website. Once registered, you will gain access to the Bharat AgroLink Seller Panel, where you can list your products and start selling. Please note that Bharat AgroLink charges a small fee when your product is sold.",
+      "Absolutely! You can sell on bharatagrolink.com without having a website. Once registered, you will gain access to the Bharat AgroLink Seller Panel, where you can list your products and start selling. Please note that Bharat AgroLink charges a small fee when your product is sold.",
   },
   // {
   //   question: "What is Assured?",
@@ -39,84 +39,51 @@ const generalData = [
   //     "Assured by Bharat AgroLink is a special reliability program that offers additional visibility to your products. It includes extra quality checks and ensures faster delivery within 2-4 days. Having the Assured tag guarantees more orders, increased visibility, faster delivery, and higher quality standards. By obtaining the Assured badge, you can achieve better revenue and build trust with customers.",
   // },
   {
-    question: "Can I offer both products and services on Bharatagrolink.com?",
+    question: "Can I offer both products and services on bharatagrolink.com?",
     answer:
       "Currently, Bharat AgroLink allows sellers to offer only physical products for sale on the platform. However, as a third-party service provider, you can offer specific services to Bharat Agrolink sellers to assist them in growing their businesses.",
   },
 ];
 
 export default function GeneralAccordion() {
-  const [openIndexes, setOpenIndexes] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(null);
+  const contentRefs = useRef(new Array(generalData.length).fill(null));
+
   const toggle = (index) => {
-    setOpenIndexes((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
-    );
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+
+  // Function to properly measure content heights
+  const getContentHeight = (element) => {
+    if (!element) return 0;
+    return element.scrollHeight;
   };
 
   return (
     <div className="w-full">
-      <div className="space-y-2 w-full">
-        {/* {generalData.map((item, index) => {
-             const openIndex = openIndexes.includes(index);
+      <div className="space-y-4 w-full">
+        {generalData.map((item, index) => {
+          const isOpen = activeIndex === index;
+
           return (
-            <div
-              key={index}
-              className={`border border-appText rounded-xl  py-5`}
+            <div 
+              key={index} 
+              className={`border border-appText rounded-xl overflow-hidden transition-all duration-300 ${
+                isOpen ? 'shadow-md' : ''
+              }`}
             >
               <button
                 onClick={() => toggle(index)}
-                className="flex justify-between items-center w-full px-4 py-3 text-left"
+                className="flex justify-between items-center w-full px-5 py-4 text-left focus:outline-none"
+                aria-expanded={isOpen}
               >
-                <span
-                  className={` w-full text-appTextDark text-sm md:text-xl font-bold`}
-                >
+                <span className="text-appTextDark text-sm md:text-xl font-bold">
                   {item.question}
                 </span>
                 <svg
-                  className={`w-5 h-5 transition-transform text-appGreen font-bold`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-              <div
-                className={`${
-                  openIndex === index ? "border-t-1 border-appText" : ""
-                }`}
-              >
-                {openIndex === index && (
-                  <div className="px-4 pb-4 pt-1 text-sm sm:text-xl text-appText whitespace-pre-line">
-                    {item.answer}
-                  </div>
-                )}
-              </div>
-            </div>
-          );
-        })} */}
-        {generalData.map((item, index) => {
-          const isOpen = openIndexes.includes(index);
-
-          return (
-            <div key={index} className={`border border-appText rounded-xl py-5`}>
-              <button
-                onClick={() => toggle(index)}
-                className="flex justify-between items-center w-full px-4 py-3 text-left"
-              >
-                <span className="w-full text-appTextDark text-sm md:text-xl font-bold">
-                  {item.question}
-                </span>
-                <svg
-                  className={`w-5 h-5 transition-transform ${
+                  className={`w-5 h-5 transition-transform duration-300 ease-in-out ${
                     isOpen ? "rotate-180" : ""
-                  } text-appGreen font-bold`}
+                  } text-appGreen flex-shrink-0`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -131,11 +98,21 @@ export default function GeneralAccordion() {
                 </svg>
               </button>
 
-              {isOpen && (
-                <div className="border-t border-appText px-4 pb-4 pt-1 text-sm sm:text-xl text-appText whitespace-pre-line">
+              <div 
+                ref={el => contentRefs.current[index] = el}
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  isOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+                }`}
+                style={{
+                  transitionProperty: 'max-height, opacity, padding',
+                  transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
+                }}
+                aria-hidden={!isOpen}
+              >
+                <div className="border-t border-appText px-5 py-4 text-sm sm:text-lg text-appText whitespace-pre-line">
                   {item.answer}
                 </div>
-              )}
+              </div>
             </div>
           );
         })}
