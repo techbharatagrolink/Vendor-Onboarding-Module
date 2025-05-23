@@ -11,32 +11,32 @@ export default function Footer() {
         {/* Top 4 Columns */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm text-white/90">
           <div className="space-y-1">
-            <p>Sell Seed Online</p>
-            <p>Sell Fertilizer Online</p>
-            <p>Sell Equipments Online</p>
-            <p>Sell Organic Products Online</p>
-            <p>Sell Oil Seeds Online</p>
+            <p>Seeds</p>
+            <p>Fertilizers</p>
+            <p>Growth Promoters</p>
+            <p>Micronutrients</p>
+            <p>SInsecticides</p>
           </div>
           <div className="space-y-1">
-            <p>Sell Crop Protection Products</p>
-            <p>Sell Farm Tools Online</p>
-            <p>Sell Irrigation Equipment</p>
-            <p>Sell Soil Health Products</p>
-            <p>Sell Oil Seeds Online</p>
+            <p>Fungicides</p>
+            <p>Herbicides</p>
+            <p>Bio Pesticides</p>
+            <p>Traps & Lures</p>
+            <p>Agriculture Machinery</p>
           </div>
           <div className="space-y-1">
-            <p>Sell Gardening Supplies</p>
-            <p>Sell Fertilizer Online</p>
-            <p>Sell Farming Kits</p>
-            <p>Sell Equipments Online</p>
-            <p>Sell Oil Seeds Online</p>
+            <p>Drip Irrigation</p>
+            <p>Sprinklers</p>
+            <p>Garden Tools</p>
+            <p>Pots & Planters</p>
+            <p>Organic Farming Services</p>
           </div>
           <div className="space-y-1">
-            <p>Sell Seed Online</p>
-            <p>Sell Tractor Implements</p>
-            <p>Sell Fertilizer Online</p>
-            <p>Sell Agri-Tech Tools</p>
-            <p>Sell Oil Seeds Online</p>
+            <p>Hydroponics Kits</p>
+            <p>Soil Testing Kits</p>
+            <p>Indoor Farming Kits</p>
+            <p>Agricultural Drones</p>
+            <p>Smart Farming Solutions</p>
           </div>
         </div>
 
@@ -79,7 +79,7 @@ export default function Footer() {
 
           {/* Column 4 */}
           <div>
-            <h3 className="font-semibold mb-2">Download Mobile App</h3>
+            {/* <h3 className="font-semibold mb-2">Download Mobile App</h3>
             <div className="space-y-2 mb-2">
               <Image
                 src="/googleplay.png"
@@ -96,7 +96,7 @@ export default function Footer() {
                 height={40}
                 className="mr-3"
               />
-            </div>
+            </div> */}
             <h3 className="font-semibold mb-2">Stay Connected</h3>
             <div className="flex gap-3 mt-2">
               <Image
