@@ -122,7 +122,7 @@ export default function Page() {
             share it in the final step.
           </p>
           <p className="text-sm text-appText">
-            By continuing, I agree to Bharat Agrolink's{" "}
+            By continuing, I agree to Bharat Agrolink&apos;s{" "}
             <span className="text-appGreen font-semibold cursor-pointer">
               Term of Use
             </span>{" "}

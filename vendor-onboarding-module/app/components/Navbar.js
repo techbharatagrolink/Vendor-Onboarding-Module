@@ -84,16 +84,16 @@ export default function Navbar() {
             </button>
             {!isAuthenticated ? (
               <div className="hidden md:flex space-x-6 ml-6">
-                <Link href="/" className="font-medium">
+                <Link href="/SellOnline" className="font-medium">
                   Sell Online
                 </Link>
                 <Link href="/" className="font-medium">
                   Fees and Commission
                 </Link>
-                <Link href="/" className="font-medium">
+                <Link href="/Grow" className="font-medium">
                   Grow
                 </Link>
-                <Link href="#" className="font-medium">
+                <Link href="/Learn" className="font-medium">
                   Learn
                 </Link>
               </div>
@@ -138,16 +138,16 @@ export default function Navbar() {
           <div className="md:hidden mt-4 space-y-4 text-appText text-center">
             {!isAuthenticated ? (
               <>
-                <Link href="/" className="block font-medium">
+                <Link href="/SellOnline" className="block font-medium">
                   Sell Online
                 </Link>
                 <Link href="/" className="block font-medium">
                   Fees and Commission
                 </Link>
-                <Link href="/" className="block font-medium">
+                <Link href="/Grow" className="block font-medium">
                   Grow
                 </Link>
-                <Link href="#" className="block font-medium">
+                <Link href="/Learn" className="block font-medium">
                   Learn
                 </Link>
                 <button

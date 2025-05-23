@@ -490,7 +490,7 @@ export default function Page() {
             <p className="text-appRed text-sm">{errors.state}</p>
           )}
           <p className="text-sm text-appText">
-            By continuing, I agree to Bharat Agrolink's{" "}
+            By continuing, I agree to Bharat Agrolink&apos;s{" "}
             <span className="text-appGreen font-semibold cursor-pointer">
               Term of Use
             </span>{" "}
