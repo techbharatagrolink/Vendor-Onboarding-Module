@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 // import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 
 const slides = [
@@ -30,7 +31,7 @@ export default function SneakPeakSectionLandingPage() {
   return (
     <div className="bg-appGreen text-appText px-4 py-12 md:px-16">
       <h2 className="text-3xl font-bold">
-        <span className="text-appYellow">Take a sneak peak into</span>{" "}
+        <span className="text-appYellow">Take a sneak peek into</span>{" "}
         <span className="text-white">our Platform</span>
       </h2>
       <br />
@@ -88,7 +89,7 @@ export default function SneakPeakSectionLandingPage() {
           </h3>
           <p className="text-gray-600">{slides[current].description}</p>
           <button className="mt-4 border border-orange-500 text-orange-500 hover:bg-orange-100 px-4 py-2 rounded transition">
-            Explore All Features
+            <Link href={"https://bharatagrolink.com/"}>Explore All Features</Link>
           </button>
         </div>
 

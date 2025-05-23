@@ -13,7 +13,7 @@ const steps = [
   },
   {
     title: "Orders",
-    desc: "Receive orders from over 45 crore+ Bharat Agrolink customers",
+    desc: "Receive orders from a growing community of farmers and agri-buyers across India",
     img: "/orders-icon 1.svg",
   },
   {
@@ -23,7 +23,7 @@ const steps = [
   },
   {
     title: "Payment",
-    desc: "Receive payment 7 days* from the date of dispatch of your order",
+    desc: "We do not credit the payment to the vendor after dispatch, we proceed with the payment after complete return policy",
     img: "/payment-icon 1.svg",
   },
 ];
@@ -36,9 +36,9 @@ export default function YourJourneySection() {
           Your Journey <span className="text-appRed">on Bharat Agrolink</span>
         </h2>
         <p className="text-appText mt-2 max-w-2xl ">
-          Starting your online business with Bharat Agrolink is easy. 14 Lakh+{" "}
+          Starting your online business with Bharat Agrolink is easy. Join thousands of {" "}
           <br />
-          sellers trust with their business
+          sellers building their success with us every day.
         </p>
       </div>
 

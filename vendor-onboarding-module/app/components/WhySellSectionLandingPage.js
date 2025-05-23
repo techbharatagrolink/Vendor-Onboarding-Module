@@ -12,11 +12,9 @@ export default function WhySellSectionLandingPage() {
         </span>
       </h2>
       <p className="text-appText mt-4 text-center md:text-left">
-        45 crore+ customers across India trust bharatagrolink.com to be their
-        number 1 online shopping destination.
+       Numerous customers across India trust Bharatagrolink.com to be their number 1 online shopping destination. 
         <br className="hidden md:block" />
-        It is no surprise that more than a million sellers trust their products
-        to be made available 24x7 on BharatAgrolink.
+        It is no surprise that sellers trust their products to be made available 24x7 on Flipkart.
       </p>
 
       <div className=" flex flex-col-reverse lg:flex-row items-center gap-8">
@@ -26,7 +24,7 @@ export default function WhySellSectionLandingPage() {
           <BenefitCard
             icon="/success 1.svg"
             title="Opportunity"
-            text="45 crore+ customers across 19000+ pincodes, and access to shopping festivals like The Big Billion and more"
+            text="Access to shopping Bharat Agrolink festivals sales and a large client base spanning over 19,000 pincodes"
           />
           {/* Card 2 */}
           <BenefitCard
@@ -38,13 +36,13 @@ export default function WhySellSectionLandingPage() {
           <BenefitCard
             icon="/svg-image-1 7.svg"
             title="Growth"
-            text="Sellers see an average 2.8x spike in growth, 2.3x more visibility, and up to approx 5x growth."
+            text="All sellers are welcome at Bharat Agrolink, regardless of brand or location, from small to expanding agribusiness owners."
           />
           {/* Card 4 */}
           <BenefitCard
             icon="/costumer-service 1.svg"
             title="Additional Support"
-            text="Account management services, exclusive training programs, business insights, catalogue/ photoshoot support, and more."
+            text="Access helpful resources, including basic seller guides, onboarding support, product listing tips, and insights to help you grow, with more features."
           />
         </div>
 

@@ -6,9 +6,9 @@ const NumbersandFiguresLandingPage = () => {
     <div className="w-[90%] mx-auto bg-white rounded-md shadow-card p-4 md:p-6 px-6 md:px-16 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4 md:gap-8">
       <div>
         <p className="text-appGreen font-semibold text-center text-2xl">
-          14 Lakh+
+          50+
         </p>
-        <p className="text-appText text-sm">Seller Community</p>
+        <p className="text-appText text-sm">Agri-Seller Community</p>
       </div>
       <div className="hidden md:block h-10 w-px bg-appGrey"></div>
       <div>

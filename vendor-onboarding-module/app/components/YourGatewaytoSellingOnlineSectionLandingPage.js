@@ -27,7 +27,7 @@ export default function YourGatewaytoSellingOnlineSectionLandingPage() {
                 height={180}
               />
               <p className="mt-4 text-appText text-sm md:text-base">
-                0 Returns*
+                Lower Returns*
               </p>
             </div>
 

@@ -50,7 +50,7 @@ export default function FooterNote() {
 
         {/* Copyright */}
         <div className="text-center md:text-left text-sm">
-          © 2022 Bharat Agrolink, All Rights Reserved
+          © 2025 Bharat Agrolink, All Rights Reserved
         </div>
 
         {/* Links */}

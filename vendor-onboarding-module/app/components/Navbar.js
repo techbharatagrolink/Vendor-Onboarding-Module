@@ -87,9 +87,9 @@ export default function Navbar() {
                 <Link href="/SellOnline" className="font-medium">
                   Sell Online
                 </Link>
-                <Link href="/" className="font-medium">
+                {/* <Link href="/" className="font-medium">
                   Fees and Commission
-                </Link>
+                </Link> */}
                 <Link href="/Grow" className="font-medium">
                   Grow
                 </Link>
@@ -141,9 +141,9 @@ export default function Navbar() {
                 <Link href="/SellOnline" className="block font-medium">
                   Sell Online
                 </Link>
-                <Link href="/" className="block font-medium">
+                {/* <Link href="/" className="block font-medium">
                   Fees and Commission
-                </Link>
+                </Link> */}
                 <Link href="/Grow" className="block font-medium">
                   Grow
                 </Link>

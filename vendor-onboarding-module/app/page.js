@@ -55,7 +55,7 @@ export default function Home() {
       <WhySellSectionLandingPage />
       <SellerSuccessStoriesSectionLandingPage />
       <YourJourneyonBharatAgrolinkSectionLandingPage />
-      <AccesstoourToolsSectionLandingPage />
+      {/* <AccesstoourToolsSectionLandingPage /> */}
       <YourGatewaytoSellingOnlineSectionLandingPage />
       <SneakPeakSectionLandingPage />
       <QueryFormLandingPage />

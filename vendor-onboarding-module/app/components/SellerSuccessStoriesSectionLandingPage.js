@@ -7,13 +7,19 @@ import { useState } from "react";
 const stories = [
   {
     name: "Priyank Kaushik",
-    business: "Agrobazaar",
+    business: "Agritech Technologies",
     image: "/Group 2.png",
     story: `At 23, I joined our family business, registered on Bharat Agrolink during the pandemic, became an Agro Seller, and achieved a 3 Crores turnover with Seller Support’s guidance. Growing every day!`,
   },
   {
     name: "Sachin Sir",
-    business: "Agrobazaar",
+    business: "Agrosmart Technologies",
+    image: "/1699078522418.jpg",
+    story: `At 23, I joined our family business, registered on Bharat Agrolink during the pandemic, became an Agro Seller, and achieved a 3 Crores turnover with Seller Support’s guidance. Growing every day!`,
+  },
+  {
+    name: "Sachin Sir",
+    business: "Arth Krishi Yantra",
     image: "/1699078522418.jpg",
     story: `At 23, I joined our family business, registered on Bharat Agrolink during the pandemic, became an Agro Seller, and achieved a 3 Crores turnover with Seller Support’s guidance. Growing every day!`,
   },
@@ -37,7 +43,7 @@ export default function SellerSuccessStories() {
             <span className="text-white">Stories</span>
           </h2>
           <p className="mt-4 text-lg text-white">
-            14 Lakh+ sellers trust Bharat Agrolink for their online business.
+            Numerous sellers trust Bharat Agrolink for their online business.
           </p>
           <button className="mt-6 px-4 py-2 border border-white text-white rounded hover:bg-white hover:text-green-500 transition">
             See All Stories

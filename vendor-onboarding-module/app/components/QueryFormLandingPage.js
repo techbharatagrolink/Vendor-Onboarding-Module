@@ -32,8 +32,8 @@ export default function QueryFormLandingPage() {
           We are happy to <span className="text-appRed">help you</span>
         </h2>
         <p className="text-sm text-appText mb-6">
-          Still have questions or queries that are left unanswered? Share your
-          thoughts below which will help us improve your website experience.
+         Still have questions or need more clarity?
+Share your queries or suggestions below — your feedback helps us improve your experience on Bharat Agrolink.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -49,7 +49,7 @@ export default function QueryFormLandingPage() {
           <input
             type="text"
             name="contact1"
-            placeholder="Enter Mobile Number/ Email ID *"
+            placeholder="Enter Email ID *"
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
             value={form.contact1}
             onChange={handleChange}
@@ -58,7 +58,7 @@ export default function QueryFormLandingPage() {
           <input
             type="text"
             name="contact2"
-            placeholder="Enter Mobile Number/ Email ID *"
+            placeholder="Enter Mobile Number"
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
             value={form.contact2}
             onChange={handleChange}

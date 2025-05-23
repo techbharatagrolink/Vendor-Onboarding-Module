@@ -10,7 +10,7 @@ const HeroSection = () => {
       {/* Left Text Content */}
       <div className="md:w-1/2 text-center md:text-left">
         <h1 className="text-3xl md:text-4xl font-semibold text-appText mb-6">
-          Become a Bharat Agrolink Seller and sell to 50 Crore+ customers
+          Become a Bharat Agrolink Seller and sell to numerous customers
         </h1>
         <button
           onClick={()=>router.push("/register")}
