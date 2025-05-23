@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import { BsFingerprint } from "react-icons/bs";
 import { useFormContext } from "@/app/context/FormContext";
+import Image from "next/image";
 
 const SignaturePadSection = () => {
   const sigCanvasRef = useRef(null);
@@ -87,10 +88,12 @@ const SignaturePadSection = () => {
       {formData.signature && (
         <div className="pt-4">
           <h4 className="text-sm font-medium mb-1">Preview:</h4>
-          <img
+          <Image
             src={formData.signature}
             alt="Saved signature"
             className="border w-full max-w-xs"
+            width={500}
+                  height={500}
           />
         </div>
       )}

@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React, { useState } from "react";
 
 const stories = [
@@ -53,10 +54,12 @@ export default function SuccessStories() {
         <div className="relative mx-auto mt-10  bg-[#D2EEDF] flex flex-col lg:flex-row   justify-center items-center text-black rounded-4xl shadow text-appTextDark p-8 px-12">
             {/* Image */}
           <div className="shrink-0">
-            <img
+            <Image
               src={stories[current].image}
               alt={stories[current].name}
               className="size-50 shrink-0 rounded-full object-cover"
+              width={500}
+                  height={500}
             />
           </div>
 

@@ -40,10 +40,12 @@ export default function SellerApp() {
             {/* Green Ticks */}
             <div className="text-md md:text-lg text-appText">
               <div className="flex items-center my-4">
-                <img
+                <Image
                   src="/GreenTick.png"
                   alt="Green Tick"
                   className="mr-5 size-5 "
+                  width={500}
+                  height={500}
                 />
                 <p className="text-appText text-sm xl:text-md">
                   Price Recommendation Tool : Get data-backed suggestions for
@@ -51,10 +53,12 @@ export default function SellerApp() {
                 </p>
               </div>
               <div className="flex items-center my-4">
-                <img
+                <Image
                   src="/GreenTick.png"
                   alt="Green Tick"
                   className="mr-5 size-5"
+                  width={500}
+                  height={500}
                 />
                 <p className="text-appText text-sm xl:text-md">
                   Product Recommendation Tool : Discover trending and
@@ -62,10 +66,12 @@ export default function SellerApp() {
                 </p>
               </div>
               <div className="flex items-center my-4">
-                <img
+                <Image
                   src="/GreenTick.png"
                   alt="Green Tick"
                   className="mr-5 size-5 "
+                  width={500}
+                  height={500}
                 />
                 <p className="text-appText text-sm xl:text-md">
                   Ad Campaigns with Bharat Agrolink Ads : Promote your listings
@@ -73,10 +79,12 @@ export default function SellerApp() {
                 </p>
               </div>
               <div className="flex items-center my-4">
-                <img
+                <Image
                   src="/GreenTick.png"
                   alt="Green Tick"
                   className="mr-5 size-5 "
+                  width={500}
+                  height={500}
                 />
                 <p className="text-appText text-sm xl:text-md">
                   Listing & Order Management : Easily create, manage, and
@@ -84,10 +92,12 @@ export default function SellerApp() {
                 </p>
               </div>
               <div className="flex items-center my-4">
-                <img
+                <Image
                   src="/GreenTick.png"
                   alt="Green Tick"
                   className="mr-5 size-5 text-sm md:text-md"
+                  width={500}
+                  height={500}
                 />
                 <p className="text-appText text-sm xl:text-md">
                   Inventory & Payments Tracking : Stay on top of your stock
@@ -95,10 +105,12 @@ export default function SellerApp() {
                 </p>
               </div>
               <div className="flex items-center my-4">
-                <img
+                <Image
                   src="/GreenTick.png"
                   alt="Green Tick"
                   className="mr-5 size-5 text-sm md:text-md"
+                  width={500}
+                  height={500}
                 />
                 <p className="text-appText text-sm xl:text-md">
                   Shopping Festivals & Campaigns : Boost visibility and sales
@@ -106,10 +118,12 @@ export default function SellerApp() {
                 </p>
               </div>
               <div className="flex items-center my-4">
-                <img
+                <Image
                   src="/GreenTick.png"
                   alt="Green Tick"
                   className="mr-5 size-5 text-sm md:text-md"
+                  width={500}
+                  height={500}
                 />
                 <p className="text-appText text-sm xl:text-md">
                   Seller Support & Helpdesk : Get expert help whenever you need

@@ -31,6 +31,7 @@
 
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function FooterNote() {
   return (
@@ -54,13 +55,13 @@ export default function FooterNote() {
 
         {/* Links */}
         <div className="flex space-x-2 text-sm">
-          <a href="/" className="font-medium hover:underline">
+          <Link href="/" className="font-medium hover:underline">
             Privacy Policy
-          </a>
+          </Link>
           <span>|</span>
-          <a href="/" className="font-medium hover:underline">
+          <Link href="/" className="font-medium hover:underline">
             Terms of Use
-          </a>
+          </Link>
         </div>
       </div>
     </footer>

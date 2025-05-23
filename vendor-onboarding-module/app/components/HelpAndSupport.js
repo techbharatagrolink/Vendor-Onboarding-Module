@@ -1,5 +1,6 @@
+import Image from "next/image";
 import React from "react";
-export default function () {
+export default function HelpAndSupport () {
   return (
     <>
       <div className="flex-1 mb-4  w-[95%] mx-auto  h-[150vh] md:h-[120vh] lg:h-[120vh] xl:h-[80vh] ">
@@ -30,10 +31,12 @@ export default function () {
           </div>
 
           <div className="w-2/3 h-full sm:w-6/10 md:w-1/2 lg:w-4/10  my-4 mx-2  flex justify-center items-center">
-            <img
+            <Image 
               src="/HelpAndSupport.png"
               alt=" product Image"
               className="object-contain h-full w-full"
+              width={500}
+                  height={500}
             />
           </div>
         </div>

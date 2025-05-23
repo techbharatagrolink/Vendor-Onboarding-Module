@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function AccesstoourToolsSectionLandingPage() {
   const tools = [
     {
@@ -65,7 +67,7 @@ export default function AccesstoourToolsSectionLandingPage() {
               className="bg-white rounded-xl shadow-card p-6 text-left"
             >
               <div className="flex items-start gap-4 ">
-                <img src={tool.icon} alt={tool.title} className="h-8 w-8" />
+                <Image src={tool.icon} alt={tool.title} width={500} height={500} className="h-8 w-8" />
                 <div>
                   <h4 className="font-semibold text-appText mb-2">
                     {tool.title}

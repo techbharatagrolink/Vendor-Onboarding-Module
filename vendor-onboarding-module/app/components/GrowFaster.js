@@ -14,7 +14,7 @@ export default function GrowFaster() {
             <div className="w-15 my-6 h-1.5 bg-appRed"></div>
             <p className="text-appText mb-4">
               At Bharat Agrolink, we recognize that there may be times when you
-              require additional assistance for your online business. That's
+              require additional assistance for your online business. That&apos;s
               why, with your Bharat Agrolink seller account, you gain access to
               a diverse range of tools and support functions designed to foster
               business growth. These include:
@@ -23,30 +23,36 @@ export default function GrowFaster() {
             {/* Green Ticks */}
             <div className="text-md md:text-lg text-appText">
               <div className="flex items-center my-4">
-                <img
+                <Image
                   src="/GreenTick.png"
                   alt="Green Tick"
                   className="mr-5 size-5 "
+                  width={500}
+                  height={500}
                 />
                 <p className="text-appText text-sm xl:text-md">
                  Price Recommendation Tool : Get data-backed suggestions for setting competitive prices.
                 </p>
               </div>
               <div className="flex items-center my-4">
-                <img
+                <Image
                   src="/GreenTick.png"
                   alt="Green Tick"
                   className="mr-5 size-5"
+                  width={500}
+                  height={500}
                 />
                 <p className="text-appText text-sm xl:text-md">
                  Product Recommendation Tool : Discover trending and high-demand agri products to expand your catalog.
                 </p>
               </div>
               <div className="flex items-center my-4">
-                <img
+                <Image
                   src="/GreenTick.png"
                   alt="Green Tick"
                   className="mr-5 size-5 "
+                  width={500}
+                  height={500}
                 />
                 <p className="text-appText text-sm xl:text-md">
                   Ad Campaigns with Bharat Agrolink Ads : Promote your listings to reach a wider farming audience.
@@ -54,40 +60,48 @@ export default function GrowFaster() {
                 </p>
               </div>
               <div className="flex items-center my-4">
-                <img
+                <Image
                   src="/GreenTick.png"
                   alt="Green Tick"
                   className="mr-5 size-5 "
+                  width={500}
+                  height={500}
                 />
                 <p className="text-appText text-sm xl:text-md">
                  Listing & Order Management : Easily create, manage, and fulfill orders from one dashboard.
                 </p>
               </div>
               <div className="flex items-center my-4">
-                <img
+                <Image
                   src="/GreenTick.png"
                   alt="Green Tick"
                   className="mr-5 size-5 text-sm md:text-md"
+                  width={500}
+                  height={500}
                 />
                 <p className="text-appText text-sm xl:text-md">
                  Inventory & Payments Tracking : Stay on top of your stock levels and monitor payments efficiently.
                 </p>
               </div>
               <div className="flex items-center my-4">
-                <img
+                <Image
                   src="/GreenTick.png"
                   alt="Green Tick"
                   className="mr-5 size-5 text-sm md:text-md"
+                  width={500}
+                  height={500}
                 />
                 <p className="text-appText text-sm xl:text-md">
                  Shopping Festivals & Campaigns : Boost visibility and sales during seasonal promotions.
                 </p>
               </div>
               <div className="flex items-center my-4">
-                <img
+                <Image
                   src="/GreenTick.png"
                   alt="Green Tick"
                   className="mr-5 size-5 text-sm md:text-md"
+                  width={500}
+                  height={500}
                 />
                 <p className="text-appText text-sm xl:text-md">
                  Seller Support & Helpdesk : Get expert help whenever you need it.
@@ -107,7 +121,7 @@ export default function GrowFaster() {
             //   className="w-2/3 h-1/2 xl:h-6/10   sm:w-6/10 md:w-2/3 lg:w-1/2 flex"
             className="w-2/3 h-1/2 xl:h-6/10 sm:w-7/10"
           >
-           {/* <img src="/GrowFaster.png" alt="Grow Faster Image" className="object-contain" /> */}
+           {/* <Image src="/GrowFaster.png" alt="Grow Faster Image" className="object-contain" /> */}
            <Image
            src={"/GrowFaster.png"}
            className="object-contain"

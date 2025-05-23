@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 export default function ListProducts() {
@@ -29,17 +30,20 @@ export default function ListProducts() {
         </div>
 
         <div className="w-full  my-4  flex justify-center items-center">
-          <img
+          <Image
             src="/ProductImage.png"
             alt=" product Image"
             className="object-contain"
+            width={500}
+                  height={500}
           />
         </div>
       </div>
 
       {/* Bulb icon and text */}
       <div className="flex flex-col sm:flex-row justify-center items-center rounded-md mb-4">
-        <img src="/bulb.png" alt="bulb" className="size-8 sm:size-7 mx-5 my-5 " />
+        <Image src="/bulb.png" alt="bulb" className="size-8 sm:size-7 mx-5 my-5 " width={500}
+                  height={500} />
         <p className="text-appText text-sm italic">
           Did you know that providing precise and comprehensive information
           about your product, along with clear and captivating image, can
@@ -58,11 +62,14 @@ export default function ListProducts() {
           <h3 className="text-appTextDark text-md font-semibold ">
             1. Match with existing Products
           </h3>
-          <img
+          <Image
             src="/ProductGridImage.png"
             alt="Product Grid Image" 
             className="my-5  lg:w-6/10 xl:w-7/10 mx-auto object-contain"
+            width={500}
+                  height={500}
           />
+          
           <p className="text-sm text-appText w-full ">
             If your product is already available on Bharat Agrolink, you have
             the option to seamlessly link or Latch onto the existing product
@@ -75,10 +82,12 @@ export default function ListProducts() {
           <h3 className="text-appTextDark text-lg font-semibold text-left">
             2. New Product
           </h3>
-          <img
+          <Image
             src="/ProductGridImage.png"
             alt="Product Grid Image"
             className="my-5  lg:w-6/10 xl:w-7/10 mx-auto object-contain"
+            width={500}
+                  height={500}
           />
           <p className="text-sm text-appText w-full">
             If your product is already available on Bharat Agrolink, you have

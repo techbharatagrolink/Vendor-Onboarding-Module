@@ -51,6 +51,8 @@ export default function YourJourneySection() {
                 alt={step.title}
                 fill
                 className="object-contain"
+                // width={500}
+                  // height={500}
               />
             </div>
             <h3 className="font-semibold text-lg text-appText">{step.title}</h3>

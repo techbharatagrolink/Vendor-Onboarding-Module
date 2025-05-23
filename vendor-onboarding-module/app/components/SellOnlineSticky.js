@@ -7,6 +7,8 @@ import RecievePayments from "./RecievePayments";
 import GrowFaster from "./GrowFaster";
 import SellerApp from "./SellerApp";
 import HelpAndSupport from "./HelpAndSupport";
+import Image from "next/image";
+import Link from "next/link";
 
 const sections = [
   { id: "createAccount", label: "Create Account" },
@@ -64,7 +66,7 @@ export default function SellOnlineSticky() {
                 key={sec.id}
                 className="flex justify-center lg:justify-start itmes-center w-full"
               >
-                <a
+                <Link
                   href={`#${sec.id}`}
                   onClick = {()=>setActiveId(sec.id)}
                   className={` nav-link py-2 px-4 flex justify-between items-center font-bold hover:bg-gray-200 rounded-md font-medium${
@@ -75,17 +77,19 @@ export default function SellOnlineSticky() {
                 >
                   {activeId === sec.id ? (
                     <>
-                      <img
+                      <Image
                         src="/activeItem.png"
                         className="mr-2"
                         alt="activeItem"
+                        width={15}
+                  height={15}
                       />
                     </>
                   ) : (
                     ""
                   )}
                   {sec.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

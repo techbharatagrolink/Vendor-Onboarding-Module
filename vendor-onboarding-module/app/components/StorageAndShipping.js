@@ -1,6 +1,7 @@
 import React from "react";
 import FulfillmentComparison from "./FullfilmentComparisonTable";
 import ParaGraph from "./ParaGraph";
+import Image from "next/image";
 
 export default function StorageAndShipping() {
   return (
@@ -32,20 +33,24 @@ export default function StorageAndShipping() {
           {/* Green Ticks  */}
           <div className="text-sm md:text-lg text-appText">
             <div className="flex items-center my-4">
-              <img
+              <Image
                 src="/GreenTick.png"
                 alt="Green Tick"
                 className="mr-5 size-5"
+                width={500}
+                  height={500}
               />
               <p className="text-appText text-sm sm:text-md">
                 Fulfilment by Bharat Agrolink
               </p>
             </div>
             <div className="flex items-center my-4">
-              <img
+              <Image
                 src="/GreenTick.png"
                 alt="Green Tick"
                 className="mr-5 size-5 "
+                width={500}
+                  height={500}
               />
               <p className="text-appText text-sm sm:text-md">
                 Non Fulfilment by Bharat Agrolink
@@ -81,10 +86,12 @@ export default function StorageAndShipping() {
           </div>
 
           <div className="w-full sm:w-2/3  h-full md:w-1/2 lg:w-1/2 my-4  flex justify-center items-center">
-            <img
+            <Image
               src="/ProductGridImage.png"
               alt=" product Image"
               className="object-contain h-full w-full"
+              width={500}
+                  height={500}
             />
           </div>
         </div>
@@ -92,10 +99,12 @@ export default function StorageAndShipping() {
         {/* Green TickMarks */}
         <div className="text-md md:text-lg text-appText">
           <div className="flex items-center my-4">
-            <img
+            <Image
               src="/GreenTick.png"
               alt="Green Tick"
               className="mr-5 size-5 "
+              width={500}
+                  height={500}
             />
             <p className="text-appText text-sm md:text-md">
               Manage and process your orders through Bharat Agrolink Supplier
@@ -105,10 +114,12 @@ export default function StorageAndShipping() {
             </p>
           </div>
           <div className="flex items-center my-4">
-            <img
+            <Image
               src="/GreenTick.png"
               alt="Green Tick"
               className="mr-5 size-5 "
+              width={500}
+                  height={500}
             />
             <p className="text-appText text-sm md:text-md">
               Pack your product and keep it ready for pickup- Pack the product
@@ -119,10 +130,12 @@ export default function StorageAndShipping() {
             </p>
           </div>
           <div className="flex items-center my-4">
-            <img
+            <Image
               src="/GreenTick.png"
               alt="Green Tick"
               className="mr-5 size-5 "
+              width={500}
+                  height={500}
             />
             <p className="text-appText text-sm md:text-md">
               Hand over the product to Bharat Agrolink Delivery Partner- Our
@@ -130,46 +143,7 @@ export default function StorageAndShipping() {
               and deliver it directly to the customer.
             </p>
           </div>
-          {/* <div className="flex items-center my-4">
-            <img
-              src="/GreenTick.png"
-              alt="Green Tick"
-              className="mr-5 size-5 "
-            />
-            <p className="text-appText text-sm md:text-md">
-              Customer returns handled end to end
-            </p>
-          </div>
-          <div className="flex items-center my-4">
-            <img
-              src="/GreenTick.png"
-              alt="Green Tick"
-              className="mr-5 size-5 "
-            />
-            <p className="text-appText text-sm md:text-md">
-              Quality selection recommendation
-            </p>
-          </div>
-          <div className="flex items-center my-4">
-            <img
-              src="/GreenTick.png"
-              alt="Green Tick"
-              className="mr-5 size-5 "
-            />
-            <p className="text-appText text-sm md:text-md">
-              Rigorous quality checks
-            </p>
-          </div>
-          <div className="flex items-center my-4">
-            <img
-              src="/GreenTick.png"
-              alt="Green Tick"
-              className="mr-5 size-5 "
-            />
-            <p className="text-appText text-sm md:text-md">
-              Quality packaging materials
-            </p>
-          </div> */}
+          
         </div>
 
         {/* Second Content -fullfilment section */}
@@ -195,40 +169,48 @@ export default function StorageAndShipping() {
         {/* Green Ticks */}
         <div className="text-md md:text-lg text-appText">
           <div className="flex items-center my-4">
-            <img
+            <Image
               src="/GreenTick.png"
               alt="Green Tick"
               className="mr-5 size-5 "
+              width={500}
+                  height={500}
             />
             <p className="text-appText text-sm md:text-md">
               Delivery to 19000+ pincodes across India
             </p>
           </div>
           <div className="flex items-center my-4">
-            <img
+            <Image
               src="/GreenTick.png"
               alt="Green Tick"
               className="mr-5 size-5 "
+              width={500}
+                  height={500}
             />
             <p className="text-appText text-sm md:text-md">
               Tracking of your product
             </p>
           </div>
           <div className="flex items-center my-4">
-            <img
+            <Image
               src="/GreenTick.png"
               alt="Green Tick"
               className="mr-5 size-5 "
+              width={500}
+                  height={500}
             />
             <p className="text-appText text-sm md:text-md">
               Customer returns support
             </p>
           </div>
           <div className="flex items-center my-4">
-            <img
+            <Image
               src="/GreenTick.png"
               alt="Green Tick"
               className="mr-5 size-5 "
+              width={500}
+                  height={500}
             />
             <p className="text-appText text-sm md:text-md">
               Logistic support from community warehouse available

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 // import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
@@ -46,10 +47,12 @@ export default function SellerSuccessStories() {
         {/* Right Section */}
         <div className="relative bg-white text-black rounded-2xl shadow text-appTextDark p-6">
           <div className="flex justify-center">
-            <img
+            <Image
               src={stories[current].image}
               alt={stories[current].name}
               className="w-20 h-20 rounded-full border-4 border-white object-cover"
+              width={500}
+                  height={500}
             />
           </div>
           <h3 className="text-center mt-4 font-semibold text-lg">

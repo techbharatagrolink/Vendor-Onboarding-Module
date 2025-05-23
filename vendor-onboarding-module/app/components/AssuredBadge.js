@@ -24,57 +24,42 @@ export default function AssuredBadge() {
             {/* Green Ticks */}
             <div className="text-md md:text-lg text-appText">
               <div className="flex items-center my-4">
-                <img
+                <Image
                   src="/GreenTick.png"
                   alt="Green Tick"
                   className="mr-5 size-5 "
+                  width={500}
+                  height={500}
                 />
                 <p className="text-appText text-sm xl:text-md">
                   Increased visibility for your products
                 </p>
               </div>
               <div className="flex items-center my-4">
-                <img
+                <Image
                   src="/GreenTick.png"
                   alt="Green Tick"
                   className="mr-5 size-5"
+                  width={500}
+                  height={500}
                 />
                 <p className="text-appText text-sm xl:text-md">
                   Quality checks
                 </p>
               </div>
               <div className="flex items-center my-4">
-                <img
+                <Image
                   src="/GreenTick.png"
                   alt="Green Tick"
                   className="mr-5 size-5 "
+                  width={500}
+                  height={500}
                 />
                 <p className="text-appText text-sm xl:text-md">
                   Faster delivery
                 </p>
               </div>
-              {/* <div className="flex items-center my-4">
-                <img
-                  src="/GreenTick.png"
-                  alt="Green Tick"
-                  className="mr-5 size-5 "
-                />
-                <p className="text-appText text-sm xl:text-md">
-                  Paid Account Management services: Offers dedicated account
-                  management support for personalised guidance.
-                </p>
-              </div>
-              <div className="flex items-center my-4">
-                <img
-                  src="/GreenTick.png"
-                  alt="Green Tick"
-                  className="mr-5 size-5 text-sm md:text-md"
-                />
-                <p className="text-appText text-sm xl:text-md">
-                  Shopping Festivals and more: Participate in exciting sales
-                  events and promotional campaigns.
-                </p>
-              </div> */}
+              
               <h1 className="text-appTextDark font-bold text-md sm:text-lg lg:text-xl">
                 The Assured badge can be gained by ensuring minimum quality and
                 service standards defined for Assured

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 export default function RecievePayments() {
   return (
@@ -8,10 +9,12 @@ export default function RecievePayments() {
 
 
           <div className="w-full h-full sm:w-2/3 md:h-1/2 xl:w-4/10   my-4 mx-2  flex justify-center items-center">
-            <img
+            <Image
               src="/Payment.png"
               alt=" product Image"
               className="object-contain h-full w-full"
+              width={500}
+                  height={500}
             />
           </div>
 

@@ -11,6 +11,7 @@ import {
 import SignaturePadSection from "@/app/components/SignaturePadSection";
 import { useFormContext } from "@/app/context/FormContext";
 import useToast from "@/hooks/useToast";
+import Image from "next/image";
 
 export default function Page() {
   const router = useRouter();
@@ -511,10 +512,12 @@ export default function Page() {
         <div className="w-full md:w-1/4 bg-white p-4">
           <div className="max-w-xs p-4 border border-appText rounded-xl shadow-sm bg-white">
             <div className="flex items-start gap-3">
-              <img
+              <Image
                 src="/Group 2.png"
                 alt="Swastik Arya"
                 className="w-10 h-10 rounded-full object-cover"
+                width={500}
+                  height={500}
               />
               <div>
                 <p className="text-sm text-appText mb-2">
@@ -1084,7 +1087,7 @@ export default function Page() {
 //           <div className="max-w-xs p-4 border border-appText rounded-xl shadow-sm bg-white">
 //             <div className="flex items-start gap-3">
 //               {/* Profile Image */}
-//               <img
+//               <Image
 //                 src="/Group 2.png"
 //                 alt="Swastik Arya"
 //                 className="w-10 h-10 rounded-full object-cover"

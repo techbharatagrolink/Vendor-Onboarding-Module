@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 export default function AdvertiseYourProducts() {
   return (
@@ -30,10 +31,12 @@ export default function AdvertiseYourProducts() {
                Benefits of running Bharat Agrolink Ads for your business
               </h1>
               <div className="flex items-center my-4">
-                <img
+                <Image
                   src="/GreenTick.png"
                   alt="Green Tick"
                   className="mr-5 size-5"
+                  width={500}
+                  height={500}
                 />
                 <p className="text-appText text-sm sm:text-md md:text-lg">
                   Higher Visibility: Increase your products visibility by
@@ -41,10 +44,12 @@ export default function AdvertiseYourProducts() {
                 </p>
               </div>
               <div className="flex items-center my-4">
-                <img
+                <Image
                   src="/GreenTick.png"
                   alt="Green Tick"
                   className="mr-5 size-5 "
+                  width={500}
+                  height={500}
                 />
                 <p className="text-appText text-sm sm:text-md md:text-lg">
                   Actionable Insights: With insights on competition, customer
@@ -62,10 +67,12 @@ export default function AdvertiseYourProducts() {
           </div>
 
           <div className="w-full sm:w-2/3  h-full md:w-1/2 lg:w-1/2 my-4  flex justify-center items-center">
-            <img
+            <Image
               src="/AdvertiseProducts.png"
               alt=" product Image"
               className="object-contain h-full w-full"
+              width={500}
+              height={500}
             />
           </div>
         </div>

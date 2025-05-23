@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 export default function ShoppingFestival() {
   return (
@@ -32,10 +33,12 @@ export default function ShoppingFestival() {
           </div>
 
           <div className="w-full h-full sm:h-1/2 sm:w-3/4  md:h-1/2 lg:h-ful xl:w-4/10   mt-4 mx-2  flex justify-center items-center">
-            <img
+            <Image
               src="/ShoppingFestival.png"
               alt=" product Image"
               className="object-contain h-full w-full"
+              width={500}
+                  height={500}
             />
           </div>
         </div>

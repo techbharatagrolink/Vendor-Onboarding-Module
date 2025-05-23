@@ -4,6 +4,8 @@ import AssuredBadge from "./AssuredBadge";
 import GrowInsights from "./GrowInsights";
 import AdvertiseYourProducts from "./AdvertiseYourProducts";
 import ShoppingFestival from "./ShoppingFestival";
+import Image from "next/image";
+import Link from "next/link";
 
 const sections = [
   { id: "assuredBadge", label: "Assured Badge" },
@@ -59,7 +61,7 @@ export default function GrowStickySection() {
                 key={sec.id}
                 className="flex justify-center lg:justify-start itmes-center w-full"
               >
-                <a
+                <Link
                   href={`#${sec.id}`}
                   onClick = {()=>setActiveId(sec.id)}
                   className={` nav-link py-2 px-4 flex justify-between text-center sm:text-left items-center font-bold hover:bg-gray-200 rounded-md font-medium${
@@ -70,17 +72,19 @@ export default function GrowStickySection() {
                 >
                   {activeId === sec.id ? (
                     <>
-                      <img
+                      <Image
                         src="/activeItem.png"
                         className="mr-2"
                         alt="activeItem"
+                        width={15}
+                  height={15}
                       />
                     </>
                   ) : (
                     ""
                   )}
                   {sec.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
