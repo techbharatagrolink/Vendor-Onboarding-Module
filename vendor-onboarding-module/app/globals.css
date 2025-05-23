@@ -17,10 +17,12 @@
   --color-appDarkGreen:#0E8A3A;
   --color-appBlue:#517ABC;
   --color-appGrey: #8B8B8B;
+  --color-appLightGreen: #D2EEDF;
 /* Card Shadow */
   --shadow-card: 0px 0px 23.1px 1px rgba(16, 164, 80, 0.1); 
 
   --font-lato: var(--font-lato);
+
 }
 
 :root {
@@ -47,6 +49,8 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
+
+
 
 @media (prefers-color-scheme: dark) {
   :root {
