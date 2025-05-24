@@ -3,7 +3,7 @@ import React from "react";
 export default function ShoppingFestival() {
   return (
     <>
-      <div className="flex-1 mb-5  w-[95%] mx-auto bg-[#D2EEDF] h-[180vh] md:h-[120vh] lg:h-[120vh] xl:h-[60vh] ">
+      <div className="flex-1 mb-5  w-[95%] mx-auto bg-[#D2EEDF] ">
         <div className="flex flex-col h-full xl:flex-row justify-between items-center mt-5">
 
 
@@ -32,11 +32,11 @@ export default function ShoppingFestival() {
            
           </div>
 
-          <div className="w-full h-full sm:h-1/2 sm:w-3/4 e  md:h-1/2 lg:h-ful xl:w-4/10  mx-2  flex justify-center items-end">
+          <div className="w-full  sm:h-1/2 sm:w-3/4 e  md:h-1/2 lg:h-ful xl:w-4/10  mx-2">
             <Image
               src="/ShoppingFestival.png"
               alt=" product Image"
-              className=" h-full w-full  "
+              className=" h-full w-full  object-contain"
               width={500}
                   height={500}
             />
