@@ -39,13 +39,15 @@ export default function FooterNote() {
       <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
         {/* Logo */}
         <div className="flex-shrink-0">
-          <Image
-            src="/logo1.svg"
-            alt="Logo"
-            width={140}
-            height={40}
-            className="mx-auto md:mx-0"
-          />
+          <Link href="https://bharatagrolink.com/">
+            <Image
+              src="/logo1.svg"
+              alt="Logo"
+              width={140}
+              height={40}
+              className="mx-auto md:mx-0"
+            />
+          </Link>
         </div>
 
         {/* Copyright */}

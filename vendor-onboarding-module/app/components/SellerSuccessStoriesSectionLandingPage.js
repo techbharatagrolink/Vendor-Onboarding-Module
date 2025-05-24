@@ -15,7 +15,7 @@ const stories = [
     name: "Sachin Rasaili",
     business: "Agrosmart Technologies",
     image: "/1699078522418.jpg",
-    story: `At 23, I joined our family business, registered on Bharat Agrolink during the pandemic, became an Agro Seller, and achieved a 3 Crores turnover with Seller Support’s guidance. Growing every day!`,
+    story: `Starting small with one category, their unwavering support enabled massive growth. I now manage six categories and consistently see 5x annual growth. Their innovative platform truly transformed my business.`,
   },
   // {
   //   name: "Sachin Sir",

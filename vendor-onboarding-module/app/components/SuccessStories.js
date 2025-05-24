@@ -7,19 +7,13 @@ const stories = [
     name: "Priyank Kaushik",
     business: "AgriTech Technology",
     image: "/Group 2.png",
-    story: `Starting with just one category, their unwavering support and innovative platform empowered me to grow exponentially, expanding to six diverse categories and achieving an astounding 5x growth year on year.`,
+    story: `At 23, I joined our family business, registered on Bharat Agrolink during the pandemic, became an Agro Seller, and achieved a 3 Crores turnover with Seller Support’s guidance. Growing every day!.`,
   },
   {
     name: "Sachin Sir",
     business: "Agrosmart Technologies",
     image: "/1699078522418.jpg",
-    story: `At 23, I joined our family business, registered on Bharat Agrolink during the pandemic, became an Agro Seller, and achieved a 3 Crores turnover with Seller Support’s guidance. Growing every day!`,
-  },
-  {
-    name: "Sachin Sir",
-    business: "Arth Krishi Yantra",
-    image: "/1699078522418.jpg",
-    story: `At 23, I joined our family business, registered on Bharat Agrolink during the pandemic, became an Agro Seller, and achieved a 3 Crores turnover with Seller Support’s guidance. Growing every day!`,
+    story: `Starting small with one category, their unwavering support enabled massive growth. I now manage six categories and consistently see 5x annual growth. Their innovative platform truly transformed my business.`,
   },
 ];
 
@@ -39,27 +33,26 @@ export default function SuccessStories() {
             <p className="text-4xl text-appText font-semibold" >Stories</p>
         </div> */}
 
-
-        {/* Container */}
+      {/* Container */}
       <div className="px-6 md:px-16">
-
-         <div className="heading flex justify-center md:justify-start items-center mt-20"> 
-            <p className="text-2xl sm:text-3xl md:text-4xl text-appGreen font-semibold mr-2">Seller Success</p>
-            <p className="text-2xl sm:text-3xl md:text-4xl text-appText font-semibold" >Stories</p>
+        <div className="heading flex justify-center md:justify-start items-center mt-20">
+          <p className="text-2xl sm:text-3xl md:text-4xl text-appGreen font-semibold mr-2">
+            Seller Success
+          </p>
+          <p className="text-2xl sm:text-3xl md:text-4xl text-appText font-semibold">
+            Stories
+          </p>
         </div>
 
-
-    
-
         <div className="relative mx-auto mt-10  bg-[#D2EEDF] flex flex-col lg:flex-row   justify-center items-center text-black rounded-4xl shadow text-appTextDark p-8 px-12">
-            {/* Image */}
+          {/* Image */}
           <div className="shrink-0">
             <Image
               src={stories[current].image}
               alt={stories[current].name}
               className="size-50 shrink-0 rounded-full object-cover"
               width={500}
-                  height={500}
+              height={500}
             />
           </div>
 

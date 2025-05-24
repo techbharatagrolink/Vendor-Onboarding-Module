@@ -12,32 +12,32 @@ export default function Footer() {
         {/* Top 4 Columns */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm text-white/90">
           <div className="space-y-1">
-            <p>Seeds</p>
-            <p>Fertilizers</p>
-            <p>Growth Promoters</p>
-            <p>Micronutrients</p>
-            <p>SInsecticides</p>
+            <p><Link target="_blank" href="https://bharatagrolink.com/search?search=seeds">Seeds</Link></p>
+            <p><Link target="_blank" href="https://bharatagrolink.com/shop/fertilizers">Fertilizers</Link></p>
+            <p><Link target="_blank" href="https://bharatagrolink.com/shop/growth-promoterregulator">Growth Promoters</Link></p>
+            <p><Link target="_blank" href="https://bharatagrolink.com/shop/micronutrients">Micronutrients</Link></p>
+            <p><Link target="_blank" href="https://bharatagrolink.com/shop/insecticides">Insecticides</Link></p>
           </div>
           <div className="space-y-1">
-            <p>Fungicides</p>
-            <p>Herbicides</p>
-            <p>Bio Pesticides</p>
-            <p>Traps & Lures</p>
-            <p>Agriculture Machinery</p>
+            <p><Link target="_blank" href="https://bharatagrolink.com/shop/fungicides">Fungicides</Link></p>
+            <p><Link target="_blank" href="https://bharatagrolink.com/shop/herbicides">Herbicides</Link></p>
+            <p><Link target="_blank" href="https://bharatagrolink.com/shop/bio-pesticides">Bio Pesticides</Link></p>
+            <p><Link target="_blank" href="https://bharatagrolink.com/shop/traps-and-lures">Traps and Lures</Link></p>
+            <p><Link target="_blank" href="https://bharatagrolink.com/shop/machines">Agricutural Machinery</Link></p>
           </div>
           <div className="space-y-1">
-            <p>Drip Irrigation</p>
-            <p>Sprinklers</p>
-            <p>Garden Tools</p>
-            <p>Pots & Planters</p>
-            <p>Organic Farming Services</p>
+            <p><Link target="_blank" href="https://bharatagrolink.com/shop/drip-and-pipe">Drip Irrigation</Link></p>
+            <p><Link target="_blank" href="https://bharatagrolink.com/shop/sprinkler-set">Sprinklers</Link></p>
+            <p><Link target="_blank" href="https://bharatagrolink.com/shop/garden-tools">Garden Tools</Link></p>
+            <p><Link target="_blank" href="https://bharatagrolink.com/shop/garden-accessories">Pots and Planters</Link></p>
+            <p><Link target="_blank" href="https://bharatagrolink.com/shop/services">Services</Link></p>
           </div>
           <div className="space-y-1">
-            <p>Hydroponics Kits</p>
-            <p>Soil Testing Kits</p>
-            <p>Indoor Farming Kits</p>
-            <p>Agricultural Drones</p>
-            <p>Smart Farming Solutions</p>
+            <p><Link target="_blank" href="https://bharatagrolink.com/shop/hydroponic-kit">Hydroponic Kits</Link></p>
+            <p><Link target="_blank" href="https://bharatagrolink.com/shop/soil-testing-kit">Soil Testing Kits</Link></p>
+            <p><Link target="_blank" href="https://bharatagrolink.com/shop/indoor-growing-kit">Indoor Growing Kits</Link></p>
+            <p><Link target="_blank" href="https://bharatagrolink.com/shop/drones">Agricultural Drones</Link></p>
+            <p><Link target="_blank" href="https://bharatagrolink.com/shop/smart-farming">Smart Farming Solutions</Link></p>
           </div>
         </div>
 
@@ -47,34 +47,34 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-sm text-white/90">
           {/* Column 1 */}
           <div>
-            <h3 className="font-semibold mb-2">Sell Online</h3>
+            <h3 className="font-semibold mb-2"><Link target="_blank" href="/SellOnline">Sell Online</Link></h3>
             <ul className="space-y-1">
-              <li>Create Account</li>
-              <li>List Products</li>
-              <li>Storage & Shipping</li>
-              <li>Fees & Commission</li>
-              <li>Help & Support</li>
+              <li><Link target="_blank" href="/SellOnline#createAccount">Create Account</Link></li>
+              <li><Link target="_blank" href="/SellOnline#listProducts">List Products</Link></li>
+              <li><Link target="_blank" href="/SellOnline#storage">Shipping</Link></li>
+              {/* <li><Link target="_blank" href="/SellOnline#createAccount">Create Account</Link></li> */}
+              <li><Link target="_blank" href="/SellOnline#help">Help And Support</Link></li>
             </ul>
           </div>
 
           {/* Column 2 */}
           <div>
-            <h3 className="font-semibold mb-2">Grow Your Business</h3>
+            <h3 className="font-semibold mb-2"><Link target="_blank" href="/Grow">Grow Your Business</Link></h3>
             <ul className="space-y-1">
-              <li>Insights & Tools</li>
-              <li>Bharat Agrolink Ads</li>
-              <li>Bharat Agrolink Value Services</li>
-              <li>Shopping Festivals</li>
+              <li><Link target="_blank" href="/Grow#insights">Insights & Tools</Link></li>
+              {/* <li>Bharat Agrolink Ads</li> */}
+              <li><Link target="_blank" href="/Grow#assuredBadge">Bharat Agrolink Value Services</Link>s</li>
+              <li><Link target="_blank" href="/Grow#shoppingFestival">Shopping Festival</Link></li>
             </ul>
           </div>
 
           {/* Column 3 */}
           <div>
-            <h3 className="font-semibold mb-2">Learn More</h3>
+            <h3 className="font-semibold mb-2"><Link target="_blank" href="/Learn">Learn More</Link></h3>
             <ul className="space-y-1">
-              <li>FAQs</li>
-              <li>Seller Success Stories</li>
-              <li>Seller Blogs</li>
+              <li><Link target="_blank" href="/Learn#general">FAQs</Link></li>
+              {/* <li>Seller Success Stories</li> */}
+              <li><Link target="_blank" href="/Learn#general">Seller Blogs</Link></li>
             </ul>
           </div>
 
@@ -100,28 +100,28 @@ export default function Footer() {
             </div> */}
             <h3 className="font-semibold mb-2">Stay Connected</h3>
             <div className="flex gap-3 mt-2">
-              <Link href="https://www.facebook.com/share/199Zdh62pe/?mibextid=qi2Omg" target="_blank"><Image
+              <Link target="_blank" href="https://www.facebook.com/share/199Zdh62pe/?mibextid=qi2Omg" ><Image
                 src="/facebook.svg"
                 alt="Logo"
                 width={30}
                 height={30}
                 // className="mr-1"
               /></Link>
-              <Link href="https://www.instagram.com/bharat_agrolink?igsh=MW1tenRqZzQwcmt0Yw==" target="_blank"><Image
+              <Link target="_blank" href="https://www.instagram.com/bharat_agrolink?igsh=MW1tenRqZzQwcmt0Yw==" ><Image
                 src="/instagram.svg"
                 alt="Logo"
                 width={30}
                 height={30}
                 // className="mr-1"
               /></Link>
-              <Link href="https://www.linkedin.com/company/bharatagrolink/" target="_blank"><Image
+              <Link target="_blank" href="https://www.linkedin.com/company/bharatagrolink/" ><Image
                 src="/linkedin.svg"
                 alt="Logo"
                 width={30}
                 height={30}
                 // className="mr-1"
               /></Link>
-              <Link href="https://youtube.com/@bharatagrolink?si=bMR94epkTXlKwnCM" target="_blank" className="my-auto"><Image
+              <Link target="_blank" href="https://youtube.com/@bharatagrolink?si=bMR94epkTXlKwnCM" className="my-auto"><Image
                 src="/youtube.svg"
                 alt="Logo"
                 width={30}

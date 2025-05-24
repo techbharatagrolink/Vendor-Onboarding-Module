@@ -17,16 +17,16 @@ export default function LearnHeroSection() {
           {/* Left Text Content */}
 
           <div className="md:w-1/2 text-center md:text-left z-10">
-            <PageHeading heading={"Supercharge your business with industry-leading tools services"} />
+            <PageHeading heading={"Frequently Asked Questions"} />
           </div>
 
           {/* Right Image */}
           <div className="md:w-1/2 flex justify-center mb-8 md:mb-0">
             <Image
-              src="/SellOnline.jpg"
+              src="/LearnImage.png"
               alt="Family selling products"
-              width={500}
-              height={500}
+              width={350}
+              height={350}
               className="object-contain z-0"
               //    priority
             />
