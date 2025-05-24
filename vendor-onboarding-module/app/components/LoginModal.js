@@ -102,7 +102,7 @@ export default function LoginModal({ isOpen, onClose }) {
       ></div>
       <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white w-[90%] max-w-md p-6 rounded-lg shadow-card z-50">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-semibold text-appText">Login</h2>
+          <h2 className="text-lg font-semibold text-appText">Login to your Seller Panel</h2>
           <button onClick={onClose}>
             <IoClose className="cursor-pointer w-5 h-5 text-appText" />
           </button>
@@ -114,7 +114,10 @@ export default function LoginModal({ isOpen, onClose }) {
                 type="text"
                 value={mobile}
                 onChange={(e) => setMobile(e.target.value)}
-                placeholder="Username or phone number or email *"
+                placeholder="Phone Number"
+                maxLength="10"
+                minLength={10}
+                required
                 className="w-full border border-gray-300 px-3 py-2 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-green-500"
               />
               {error && <p className="text-appRed text-sm mb-2">{error}</p>}

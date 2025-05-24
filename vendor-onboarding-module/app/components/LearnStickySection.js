@@ -104,7 +104,7 @@ export default function LearnStickySection() {
       </aside>
 
       {/* Right Scrollable Content */}
-      <main className="lg:w-7/10   pt-10">
+      <main className="lg:w-7/10 pt-10 pb-10">
         <section ref={(el) => (sectionRefs.current.general = el)} className="scroll-mt-25  scroll-smooth" id="general">
             <LearnGeneral/>
         </section>

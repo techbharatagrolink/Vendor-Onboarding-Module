@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { useFormContext } from "../context/FormContext";
+import TestimonialCard from "../components/TestimonialCard";
 
 export default function Page() {
   const router = useRouter();
@@ -133,35 +134,13 @@ export default function Page() {
           </p>
           <button
             onClick={handleSubmit}
-            className="cursor-pointer w-full sm:w-[45%] md:w-full lg:w-full xl:w-full 2xl:w-[25%] bg-appGreen text-white py-2 rounded flex items-center justify-center gap-2"
+            className="cursor-pointer w-full sm:w-[45%] md:w-full lg:w-full xl:w-full 2xl:w-[25%] bg-appGreen text-white text-sm py-2 rounded flex items-center justify-center gap-2"
           >
             Register & Continue
             <span className="text-xl">→</span>
           </button>
         </div>
-        <div className="w-full md:w-1/4 bg-white p-4">
-          <div className="max-w-xs p-4 border border-appText rounded-xl shadow-sm bg-white">
-            <div className="flex items-start gap-3">
-              <Image
-                src="/Group 2.png"
-                alt="Swastik Arya"
-                width={40}
-                height={40}
-                className="rounded-full object-cover"
-              />
-              <div>
-                <p className="text-sm text-appText mb-2">
-                  Starting with 1, Bharat Agrolink helped me expand to 6
-                  categories with 5x growth year on year!
-                </p>
-                <p className="text-sm font-semibold text-appText">
-                  Swasthik Arya,
-                </p>
-                <p className="text-sm text-appText">Bharat Agrolink Store</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <TestimonialCard/>
       </div>
     </div>
   );

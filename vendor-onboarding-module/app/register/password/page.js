@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useFormContext } from "@/app/context/FormContext";
 import { useRouter } from "next/navigation";
 import useToast from "@/hooks/useToast";
+import TestimonialCard from "@/app/components/TestimonialCard";
 
 export default function PasswordOnboarding() {
   const [showPassword, setShowPassword] = useState(false);
@@ -148,29 +149,7 @@ export default function PasswordOnboarding() {
             <span className="text-xl">→</span>
           </button>
         </div>
-        <div className="w-full md:w-1/4 bg-white p-4">
-          <div className="max-w-xs p-4 border border-appText rounded-xl shadow-sm bg-white">
-            <div className="flex items-start gap-3">
-              <Image
-                src="/Group 2.png"
-                alt="Swastik Arya"
-                width={40}
-                height={40}
-                className="rounded-full object-cover"
-              />
-              <div>
-                <p className="text-sm text-appText mb-2">
-                  Starting with 1, Bharat Agrolink helped me expand to 6
-                  categories with 5x growth year on year!
-                </p>
-                <p className="text-sm font-semibold text-appText">
-                  Swasthik Arya,
-                </p>
-                <p className="text-sm text-appText">Bharat Agrolink Store</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <TestimonialCard/>
       </div>
     </div>
   );

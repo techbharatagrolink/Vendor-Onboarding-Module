@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export const feesData = [
   {
@@ -26,33 +26,38 @@ export const feesData = [
 ];
 
 export default function FeesAccordion() {
-  const [openIndexes, setOpenIndexes] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(null);
+  const contentRefs = useRef(new Array(feesData.length).fill(null));
+
   const toggle = (index) => {
-    setOpenIndexes((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
-    );
+    setActiveIndex(activeIndex === index ? null : index);
   };
 
   return (
     <div className="w-full">
-      <div className="space-y-2 w-full">
-        
+      <div className="space-y-4 w-full">
         {feesData.map((item, index) => {
-          const isOpen = openIndexes.includes(index);
+          const isOpen = activeIndex === index;
 
           return (
-            <div key={index} className={`border border-appText rounded-xl py-5`}>
+            <div 
+              key={index} 
+              className={`border border-appText rounded-xl overflow-hidden transition-all duration-300 ${
+                isOpen ? 'shadow-md' : ''
+              }`}
+            >
               <button
                 onClick={() => toggle(index)}
-                className="flex justify-between items-center w-full px-4 py-3 text-left"
+                className="flex justify-between items-center w-full px-5 py-4 text-left focus:outline-none"
+                aria-expanded={isOpen}
               >
-                <span className="w-full text-appTextDark text-sm md:text-xl font-bold">
+                <span className="text-appTextDark text-sm md:text-xl font-bold">
                   {item.question}
                 </span>
                 <svg
-                  className={`w-5 h-5 transition-transform ${
+                  className={`w-5 h-5 transition-transform duration-300 ease-in-out ${
                     isOpen ? "rotate-180" : ""
-                  } text-appGreen font-bold`}
+                  } text-appGreen flex-shrink-0`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -67,11 +72,21 @@ export default function FeesAccordion() {
                 </svg>
               </button>
 
-              {isOpen && (
-                <div className="border-t border-appText px-4 pb-4 pt-1 text-sm sm:text-xl text-appText whitespace-pre-line">
+              <div 
+                ref={el => contentRefs.current[index] = el}
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  isOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+                }`}
+                style={{
+                  transitionProperty: 'max-height, opacity, padding',
+                  transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
+                }}
+                aria-hidden={!isOpen}
+              >
+                <div className="border-t border-appText px-5 py-4 text-sm sm:text-lg text-appText whitespace-pre-line">
                   {item.answer}
                 </div>
-              )}
+              </div>
             </div>
           );
         })}

@@ -12,6 +12,8 @@ import SignaturePadSection from "@/app/components/SignaturePadSection";
 import { useFormContext } from "@/app/context/FormContext";
 import useToast from "@/hooks/useToast";
 import Image from "next/image";
+import TestimonialCard from "@/app/components/TestimonialCard";
+
 
 export default function Page() {
   const router = useRouter();
@@ -509,29 +511,7 @@ export default function Page() {
             Register & Continue <span className="text-xl">→</span>
           </button>
         </div>
-        <div className="w-full md:w-1/4 bg-white p-4">
-          <div className="max-w-xs p-4 border border-appText rounded-xl shadow-sm bg-white">
-            <div className="flex items-start gap-3">
-              <Image
-                src="/Group 2.png"
-                alt="Swastik Arya"
-                className="w-10 h-10 rounded-full object-cover"
-                width={500}
-                  height={500}
-              />
-              <div>
-                <p className="text-sm text-appText mb-2">
-                  Starting with 1, Bharat Agrolink helped me expand to 6
-                  categories with 5x growth year on year!
-                </p>
-                <p className="text-sm font-semibold text-appText">
-                  Swasthik Arya,
-                </p>
-                <p className="text-sm text-appText">Bharat Agrolink Store</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <TestimonialCard/>
       </div>
     </div>
   );
