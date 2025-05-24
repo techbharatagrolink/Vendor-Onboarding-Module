@@ -4,7 +4,7 @@ import GeneralAccordion from "./GeneralAccordion";
 export default function LearnGeneral() {
   return (
     <>
-      <div className="flex-1 p-8 pt-2 mb-4 px-6  ">
+      <div className=" p-8 pt-2 mb-4 px-6  ">
         {/* Heading */}
         <h2 className="text-3xl font-semibold mb-4 text-appTextDark">
           General

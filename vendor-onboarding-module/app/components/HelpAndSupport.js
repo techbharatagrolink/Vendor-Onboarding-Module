@@ -3,7 +3,7 @@ import React from "react";
 export default function HelpAndSupport () {
   return (
     <>
-      <div className="flex-1 mb-4  w-[95%] mx-auto  h-[150vh] md:h-[120vh] lg:h-[120vh] xl:h-[80vh] ">
+      <div className=" mb-4  w-[95%] mx-auto  ">
         <div className="flex flex-col-reverse h-full xl:flex-row justify-center items-center mt-5">
           <div className="w-full xl:w-6/10 flex flex-col justify-center mx-2 px-4 lg:p-2">
             {/* Heading */}
@@ -30,7 +30,7 @@ export default function HelpAndSupport () {
             </p> */}
           </div>
 
-          <div className="w-2/3 h-full sm:w-6/10 md:w-1/2 lg:w-4/10  my-4 mx-2  flex justify-center items-center">
+          <div className="w-full h-full sm:w-6/10 md:w-1/2 lg:w-4/10 mx-2 flex justify-center items-center">
             <Image 
               src="/HelpAndSupport.png"
               alt=" product Image"

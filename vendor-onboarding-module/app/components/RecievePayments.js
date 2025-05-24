@@ -3,12 +3,12 @@ import React from "react";
 export default function RecievePayments() {
   return (
     <>
-      <div className="flex-1 mb-4  w-[95%] mx-auto bg-[#D2EEDF] h-[150vh] md:h-[120vh] lg:h-[120vh] xl:h-[60vh] ">
+      <div className="mb-4  w-[95%] mx-auto bg-[#D2EEDF] h-[90%] ">
         <div className="flex flex-col h-full xl:flex-row justify-center items-center mt-5">
 
 
 
-          <div className="w-full h-full sm:w-2/3 md:h-1/2 xl:w-4/10   my-4 mx-2  flex justify-center items-center">
+          <div className="w-full h-1/2 sm:w-2/3 md:h-1/2 xl:w-4/10 mx-2 flex justify-center items-center">
             <Image
               src="/Payment.png"
               alt=" product Image"

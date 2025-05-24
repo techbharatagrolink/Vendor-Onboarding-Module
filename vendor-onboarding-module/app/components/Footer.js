@@ -47,13 +47,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-sm text-white/90">
           {/* Column 1 */}
           <div>
-            <h3 className="font-semibold mb-2"><Link target="_blank" href="/SellOnline">Sell Online</Link></h3>
+            <h3 className="font-semibold mb-2"><Link  href="/SellOnline">Sell Online</Link></h3>
             <ul className="space-y-1">
-              <li><Link target="_blank" href="/SellOnline#createAccount">Create Account</Link></li>
-              <li><Link target="_blank" href="/SellOnline#listProducts">List Products</Link></li>
-              <li><Link target="_blank" href="/SellOnline#storage">Shipping</Link></li>
+              <li><Link  href="/SellOnline#createAccount">Create Account</Link></li>
+              <li><Link  href="/SellOnline#listProducts">List Products</Link></li>
+              <li><Link href="/SellOnline#storage">Shipping</Link></li>
               {/* <li><Link target="_blank" href="/SellOnline#createAccount">Create Account</Link></li> */}
-              <li><Link target="_blank" href="/SellOnline#help">Help And Support</Link></li>
+              <li><Link  href="/SellOnline#help">Help And Support</Link></li>
             </ul>
           </div>
 
@@ -61,10 +61,10 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-2"><Link target="_blank" href="/Grow">Grow Your Business</Link></h3>
             <ul className="space-y-1">
-              <li><Link target="_blank" href="/Grow#insights">Insights & Tools</Link></li>
+              <li><Link  href="/Grow#insights">Insights & Tools</Link></li>
               {/* <li>Bharat Agrolink Ads</li> */}
-              <li><Link target="_blank" href="/Grow#assuredBadge">Bharat Agrolink Value Services</Link>s</li>
-              <li><Link target="_blank" href="/Grow#shoppingFestival">Shopping Festival</Link></li>
+              <li><Link  href="/Grow#assuredBadge">Bharat Agrolink Value Services</Link>s</li>
+              <li><Link href="/Grow#shoppingFestival">Shopping Festival</Link></li>
             </ul>
           </div>
 
@@ -72,9 +72,9 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-2"><Link target="_blank" href="/Learn">Learn More</Link></h3>
             <ul className="space-y-1">
-              <li><Link target="_blank" href="/Learn#general">FAQs</Link></li>
+              <li><Link  href="/Learn#general">FAQs</Link></li>
               {/* <li>Seller Success Stories</li> */}
-              <li><Link target="_blank" href="/Learn#general">Seller Blogs</Link></li>
+              <li><Link  href="/Learn#general">Seller Blogs</Link></li>
             </ul>
           </div>
 

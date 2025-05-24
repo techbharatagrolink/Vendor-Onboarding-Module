@@ -4,7 +4,7 @@ import React from "react";
 export default function SellerApp() {
   return (
     <>
-      <div className=" mt-80 sm:mt-50  lg:mt-80 xl:mt-10 p-5   w-[95%] mx-auto h-[220vh] sm:h-[200vh] md:h-[180vh] xl:h-[100vh]   ">
+      <div className="p-5 w-[95%] mx-auto  ">
         <div className="flex flex-col xl:h-full xl:flex-row justify-center items-center xl:items-end mt-10 ">
           {/* Image */}
           <div

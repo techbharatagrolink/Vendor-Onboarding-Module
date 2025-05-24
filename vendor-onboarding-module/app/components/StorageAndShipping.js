@@ -9,7 +9,7 @@ export default function StorageAndShipping() {
       {/* <div className="px-6 md:px-16 flex flex-col w-[90%] mx-auto bg-appBlue"> */}
       <div className="  flex-1 mb-4  w-[95%] mx-auto">
         <h2 className="text-3xl font-semibold mb-4 text-appTextDark">
-          Storage & Shipping
+          Shipping
         </h2>
         {/* Orange Hyphen */}
         <div className="w-15 my-6 h-1.5 bg-appRed"></div>
@@ -87,7 +87,7 @@ export default function StorageAndShipping() {
 
           <div className="w-full sm:w-2/3  h-full md:w-1/2 lg:w-1/2 my-4  flex justify-center items-center">
             <Image
-              src="/ProductGridImage.png"
+              src="/ShippingImage1.png"
               alt=" product Image"
               className="object-contain h-full w-full"
               width={500}

@@ -3,7 +3,7 @@ import React from "react";
 export default function GrowFaster() {
   return (
     <>
-      <div className="flex-1 my-4   w-[95%] mx-auto h-[120vh] md:h-[120vh] lg:h-[100vh]    ">
+      <div className="flex-1 my-4   w-[95%] mx-auto h-[120%] ">
         <div className="flex flex-col-reverse  xl:h-full xl:flex-row justify-center items-center xl:items-end mt-10 ">
           <div className="w-full  h-1/2 xl:w-1/2 lg:h-full flex flex-col  justify-end mx-2  px-4 lg:p-2">
             {/* Heading */}

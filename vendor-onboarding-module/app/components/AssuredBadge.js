@@ -4,7 +4,7 @@ import React from "react";
 export default function AssuredBadge() {
   return (
     <>
-      <div className=" my-5   xl:mt-2  w-[95%] mx-auto h-[145vh] sm:h-[130vh] md:h-[140vh] xl:h-[60vh]   ">
+      <div className=" my-5   xl:mt-2  w-[95%] mx-auto h-[130vh] sm:h-[130vh] md:h-[140vh] xl:h-[60vh]   ">
         <div className="flex flex-col-reverse xl:h-full xl:flex-row justify-center items-center lg:justify-end ">
           <div className="w-full  h-2/3 xl:w-7/10 lg:h-full flex flex-col justify-center mx-2  lg:p-2">
             {/* Heading */}

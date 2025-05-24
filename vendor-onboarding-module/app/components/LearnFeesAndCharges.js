@@ -3,7 +3,7 @@ import FeesAccordion from "./FeesAccordion";
 export default function LearnFeesAndCharges(){
     return (
         <>
-         <div className="flex-1 bg-appLightGreen p-8 pt-5  px-6  ">
+         <div className=" bg-appLightGreen p-8 pt-5  px-6  ">
         {/* Heading */}
         <h2 className="text-3xl font-semibold mb-4 text-appTextDark">
           Fees And Charges
