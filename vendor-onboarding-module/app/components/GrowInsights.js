@@ -2,7 +2,7 @@ import React from "react";
 export default function GrowInsights() {
   return (
     <>
-      <div className="flex flex-col justify-center w-[95%] mx-auto  bg-appLightGreen p-8  pt-2 my-4 px-6  ">
+      <div className="flex flex-col justify-center w-[95%] mx-auto  bg-appLightGreen  pt-2 my-4 px-6  ">
         {/* Heading */}
         <h2 className="text-2xl xl:text-3xl my-3 xl:mb-2 font-semibold  text-appTextDark">
               Insights & Tools
