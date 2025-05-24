@@ -6,7 +6,7 @@ const features = [
   {
     icon: "/icons/sell across india.svg",
     title: "Sell Across India",
-    description: "Reach over 50 crore+ customers across 27000+ pincodes",
+    description: "Reach Numerous customers across 27000+ pincodes",
   },
   {
     icon: "/icons/higher profits.svg",
@@ -15,15 +15,15 @@ const features = [
   },
   {
     icon: "/icons/account management.svg",
-    title: "Account Management",
+    title: "Marketing and Promotion",
     description:
-      "Our Dedicated managers will help your business on Bharat Agrolink",
+      "Benefit from Bharat Agrolink’s marketing efforts to boost your product visibility and sales.",
   },
   {
     icon: "/icons/lower return charges.svg",
     title: "Lower Return Charges",
     description:
-      "With our flat and low return charges, ship your products stree-free",
+      "With our flat and low return charges, ship your products stress-free",
   },
   {
     icon: "/icons/simple pricing calculator.svg",
@@ -40,13 +40,13 @@ const features = [
   {
     icon: "/icons/fast regular payments.svg",
     title: "Fast & Regular Payments",
-    description: "Get payments as fast as 7-10 days from the date of dispatch",
+    description: "Get secure and regular payments as fast as 7* days from the date of dispatch",
   },
   {
     icon: "/icons/business on the go.svg",
-    title: "Business on the go",
+    title: "All-in-One Agri Platform",
     description:
-      "Download our Seller App to manage your business anywhere, anytime",
+      "Products, services, and exposure in one place.",
   },
 ];
 

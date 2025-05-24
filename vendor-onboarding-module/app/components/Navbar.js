@@ -89,7 +89,7 @@ export default function Navbar() {
   // Render navbar immediately with loading states instead of hiding
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-white shadow-card px-6 py-4">
+      <nav className="sticky top-0 z-50 bg-white shadow-card px-16 py-4 ">
         <div className="flex justify-between items-center">
           <div className="flex items-center text-appText">
             <button onClick={() => router.push("/")} className="cursor-pointer">
