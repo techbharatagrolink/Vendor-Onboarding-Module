@@ -54,9 +54,9 @@ return percentage
         title: "ID & Signature Verification",
         items: [
           { label: "GSTIN", completed: formData.gstIN ? true: false },
-          { label: "Full Company Name", completed: formData.companyName ? true: false },
+          { label: "Company Name", completed: formData.companyName ? true: false },
           { label: "Display | Business Name", completed: formData.displayName ? true: false },
-          { label: "Description", completed: formData.description ? true: false },
+          { label: "Business Description", completed: formData.description ? true: false },
           { label: "Signature Verification", completed: formData.signature ? true: false },
         ],
       },

@@ -33,9 +33,9 @@ export default function QueryFormLandingPage() {
     }
 
     // Mobile validation (optional, but if provided, must be valid)
-    if (form.contact2 && !/^\d{10}$/.test(form.contact2.replace(/\D/g, ''))) {
-      newErrors.contact2 = "Please enter a valid 10-digit mobile number";
-    }
+    if (form.contact2 && !/^[6-9]\d{9}$/.test(form.contact2.replace(/\D/g, ''))) {
+  newErrors.contact2 = "Please enter a valid 10-digit Indian mobile number";
+}
 
     // Message validation
     if (!form.message.trim()) {
