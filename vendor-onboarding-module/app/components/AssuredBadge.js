@@ -4,9 +4,9 @@ import React from "react";
 export default function AssuredBadge() {
   return (
     <>
-      <div className=" my-5   xl:mt-2  w-[95%] mx-auto h-[130vh] sm:h-[130vh] md:h-[140vh] xl:h-[60vh]   ">
+      <div className=" my-5   xl:mt-2  w-[95%] mx-auto   ">
         <div className="flex flex-col-reverse xl:h-full xl:flex-row justify-center items-center lg:justify-end ">
-          <div className="w-full  h-2/3 xl:w-7/10 lg:h-full flex flex-col justify-center mx-2  lg:p-2">
+          <div className="w-full  h-1/3 xl:w-7/10 lg:h-full flex flex-col justify-center mx-2  lg:p-2">
             {/* Heading */}
             <h2 className="text-2xl xl:text-3xl mb-0 xl:mb-2 font-semibold  text-appTextDark">
               Assured Badge
@@ -76,7 +76,7 @@ export default function AssuredBadge() {
           {/* Image */}
           <div
             //   className="w-5/10 h-full xl:h-6/10   sm:w-6/10 md:w-2/3 lg:w-1/2 flex"
-            className="w-2/5 h-1/2  xl:h-6/10 flex sm:h-1/3  sm:w-3/10 mx-5 mb-10"
+            className="w-2/3   xl:h-6/10 flex sm:h-1/3  sm:w-3/10 mx-5 mb-10"
           >
             <Image
               src="/iphone2.png"
