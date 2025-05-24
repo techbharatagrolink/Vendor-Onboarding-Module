@@ -6,27 +6,25 @@ import PageHeading from "./PageHeading";
 export default function LearnHeroSection() {
   return (
     <>
-      <div className=" px-6 md:px-16">
-
-        {/* BreadCrumb */}
-        <PageIdentifier pageName={"Learn"}/>
-
-
+      <div className="relative px-6 md:px-16">
+        {/* BreadCrumb - now positioned absolutely */}
+        <div className="relative z-20">
+          <PageIdentifier pageName={"Learn"}/>
+        </div>
         
-        <section className="flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-16  bg-white">
+        <section className="flex flex-col-reverse md:flex-row items-center px-6 md:px-16 justify-between bg-white mt-2">
           {/* Left Text Content */}
-
           <div className="md:w-1/2 text-center md:text-left z-10">
             <PageHeading heading={"Frequently Asked Questions"} />
           </div>
 
-          {/* Right Image */}
-          <div className="md:w-1/2 flex justify-center mb-8 md:mb-0">
+          {/* Right Image - adjusted to stick to top */}
+          <div className="md:w-1/2 flex justify-center md:justify-end mb-8 md:mb-0 md:-mt-12">
             <Image
               src="/LearnImage.png"
               alt="Family selling products"
-              width={350}
-              height={350}
+              width={500}
+              height={500}
               className="object-contain z-0"
               //    priority
             />

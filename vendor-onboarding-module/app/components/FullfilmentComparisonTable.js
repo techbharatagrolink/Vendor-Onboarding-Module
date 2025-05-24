@@ -43,9 +43,9 @@ export default function FulfillmentComparison() {
       <table className="min-w-full  overflow-hidden ">
         <thead className="bg-[#D2EEDF]">
           <tr className="bg-green-100 text-appTextDark text-left text-sm md:text-base">
-            <th className="p-3 w-4/10 "> </th>
-            <th className="p-3 w-3/10   font-semibold">Fulfilment by Bharat Agrolink</th>
-            <th className="p-3 w/3-10 font-semibold">Non Fulfilment by Bharat Agrolink</th>
+            <th className="p-3 w-2/10 "> </th>
+            <th className="p-3 w-4/10   font-semibold">Fulfilment by Bharat Agrolink</th>
+            <th className="p-3 w/4-10 font-semibold">Non Fulfilment by Bharat Agrolink</th>
           </tr>
         </thead>
         <tbody>
