@@ -7,7 +7,7 @@ export default function TestimonialCard({ testimonial }) {
                 <div className="flex items-start gap-3">
                     <Image
                         src="/Group 2.png"
-                        alt="Swastik Arya"
+                        alt="Priyank Kaushik"
                         width={40}
                         height={40}
                         className="rounded-full object-cover"
@@ -18,7 +18,7 @@ export default function TestimonialCard({ testimonial }) {
 
                         </p>
                         <p className="text-sm font-semibold text-appText">
-                            Swasthik Arya,
+                            Priyank Kaushik,
                         </p>
                         <p className="text-sm text-appText">Agritech Technology</p>
                     </div>
