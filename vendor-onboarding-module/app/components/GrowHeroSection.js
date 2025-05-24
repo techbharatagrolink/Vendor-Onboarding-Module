@@ -23,11 +23,11 @@ export default function GrowSectionHero() {
           {/* Right Image */}
           <div className="md:w-1/2 flex justify-center mb-8 md:mb-0">
             <Image
-              src="/SellOnline.jpg"
+              src="/GrowImage.png"
               alt="Family selling products"
-              width={500}
-              height={500}
-              className="object-contain z-0"
+              width={350}
+              height={350}
+              className="object-cover z-0"
               //    priority
             />
           </div>
