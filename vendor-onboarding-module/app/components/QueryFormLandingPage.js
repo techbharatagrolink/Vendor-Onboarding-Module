@@ -13,15 +13,89 @@ export default function QueryFormLandingPage() {
     contact2: "",
     message: "",
   });
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    const newErrors = {};
+    
+    // Name validation
+    if (!form.name.trim()) {
+      newErrors.name = "Name is required";
+    } else if (form.name.trim().length < 2) {
+      newErrors.name = "Name must be at least 2 characters long";
+    }
+
+    // Email validation
+    if (!form.contact1.trim()) {
+      newErrors.contact1 = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.contact1)) {
+      newErrors.contact1 = "Please enter a valid email address";
+    }
+
+    // Mobile validation (optional, but if provided, must be valid)
+    if (form.contact2 && !/^\d{10}$/.test(form.contact2.replace(/\D/g, ''))) {
+      newErrors.contact2 = "Please enter a valid 10-digit mobile number";
+    }
+
+    // Message validation
+    if (!form.message.trim()) {
+      newErrors.message = "Message is required";
+    } else if (form.message.trim().length < 10) {
+      newErrors.message = "Message must be at least 10 characters long";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    // Clear error when user starts typing
+    if (errors[e.target.name]) {
+      setErrors({ ...errors, [e.target.name]: "" });
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitted:", form);
-    // Add API call or handling logic
+    if (validateForm()) {
+      try {
+        const response = await fetch('/api/queries', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            ...form,
+            createdAt: new Date().toISOString(),
+          }),
+        });
+
+        if (response.ok) {
+          showToast({
+            type: "success",
+            message: "Thank you! Your submission was successful.",
+          });
+          setForm({
+            name: "",
+            contact1: "",
+            contact2: "",
+            message: "",
+          });
+        } else {
+          const errorData = await response.json();
+          showToast({
+            type: "error",
+            message: errorData.error || "Failed to submit query. Please try again.",
+          });
+        }
+      } catch (error) {
+        showToast({
+          type: "error",
+          message: "An error occurred. Please try again later.",
+        });
+      }
+    }
   };
 
   return (
@@ -32,54 +106,68 @@ export default function QueryFormLandingPage() {
           We are happy to <span className="text-appRed">help you</span>
         </h2>
         <p className="text-sm text-appText mb-6">
-         Still have questions or need more clarity?
-Share your queries or suggestions below — your feedback helps us improve your experience on Bharat Agrolink.
+          Still have questions or need more clarity?
+          Share your queries or suggestions below — your feedback helps us improve your experience on Bharat Agrolink.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="text"
-            name="name"
-            placeholder="Enter Full Name *"
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-            value={form.name}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="contact1"
-            placeholder="Enter Email ID *"
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-            value={form.contact1}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="contact2"
-            placeholder="Enter Mobile Number"
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-            value={form.contact2}
-            onChange={handleChange}
-          />
-          <textarea
-            name="message"
-            placeholder="Type Your Message *"
-            rows={4}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-            value={form.message}
-            onChange={handleChange}
-            required
-          />
+          <div>
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter Full Name *"
+              className={`w-full px-4 py-2 border ${
+                errors.name ? 'border-appRed' : 'border-appText'
+              } rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500`}
+              value={form.name}
+              onChange={handleChange}
+              required
+            />
+            {errors.name && <p className="text-appRed text-sm mt-1">{errors.name}</p>}
+          </div>
+          <div>
+            <input
+              type="text"
+              name="contact1"
+              placeholder="Enter Email ID *"
+              className={`w-full px-4 py-2 border ${
+                errors.contact1 ? 'border-appRed' : 'border-appText'
+              } rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500`}
+              value={form.contact1}
+              onChange={handleChange}
+              required
+            />
+            {errors.contact1 && <p className="text-appRed text-sm mt-1">{errors.contact1}</p>}
+          </div>
+          <div>
+            <input
+              type="text"
+              name="contact2"
+              placeholder="Enter Mobile Number"
+              className={`w-full px-4 py-2 border ${
+                errors.contact2 ? 'border-appRed' : 'border-appText'
+              } rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500`}
+              value={form.contact2}
+              onChange={handleChange}
+            />
+            {errors.contact2 && <p className="text-appRed text-sm mt-1">{errors.contact2}</p>}
+          </div>
+          <div>
+            <textarea
+              name="message"
+              placeholder="Type Your Message *"
+              rows={4}
+              className={`w-full px-4 py-2 border ${
+                errors.message ? 'border-appRed' : 'border-appText'
+              } rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500`}
+              value={form.message}
+              onChange={handleChange}
+              required
+            />
+            {errors.message && <p className="text-appRed text-sm mt-1">{errors.message}</p>}
+          </div>
           <button
             type="submit"
-            onClick={() =>
-              showToast({
-                type: "success",
-                message: "Query Sent Successfully!",
-              })
-            }
             className="bg-appGreen text-white px-6 py-2 rounded-md hover:bg-green-700 transition"
           >
             Send Query
