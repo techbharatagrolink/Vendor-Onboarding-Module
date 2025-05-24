@@ -58,17 +58,17 @@ export default function ListProducts() {
 
 {/* Youtube videos Divs */}
       <div className="flex flex-col xl:flex-row justify-between items-center  ">
-        <div className="flex flex-col sm:items-center lg:items-left justify-center my-3 mx-3 ">
-          <h3 className="text-appTextDark text-md font-semibold ">
+        <div className="flex flex-col sm:items-center lg:items-left justify-center my-3 ">
+          <h3 className="text-appTextDark text-md mb-2 font-semibold ">
             1. Match with existing Products
           </h3>
-          <Image
+          {/* <Image
             src="/ProductGridImage.png"
             alt="Product Grid Image" 
             className="my-5  lg:w-6/10 xl:w-7/10 mx-auto object-contain"
             width={500}
                   height={500}
-          />
+          /> */}
           
           <p className="text-sm text-appText w-full ">
             If your product is already available on Bharat Agrolink, you have
@@ -79,16 +79,16 @@ export default function ListProducts() {
         </div>
        
         <div className="flex flex-col sm:items-center  lg:items-left my-3 justify-center">
-          <h3 className="text-appTextDark text-lg font-semibold text-left">
+          <h3 className="text-appTextDark mb-2 text-lg font-semibold text-left">
             2. New Product
           </h3>
-          <Image
+          {/* <Image
             src="/ProductGridImage.png"
             alt="Product Grid Image"
             className="my-5  lg:w-6/10 xl:w-7/10 mx-auto object-contain"
             width={500}
                   height={500}
-          />
+          /> */}
           <p className="text-sm text-appText w-full">
             If your product is already available on Bharat Agrolink, you have
             the option to seamlessly link or Latch onto the existing product

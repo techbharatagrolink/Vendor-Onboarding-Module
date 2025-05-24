@@ -57,16 +57,16 @@ export default function SuccessStories() {
           </div>
 
           {/* Story Content */}
-          <div className="p-3 ml-5 flex flex-col ">
+          <div className="lg:pl-10 flex flex-col ">
             <div className="flex flex-col md:flex-row">
-              <p className=" text-center lg:text-left lg:text text mt-4 ml-2 text-2xl sm:text-3xl font-bold">
+              <p className=" text-center lg:text-left lg:text text mt-4 ml-2 text-xl sm:text-3xl font-bold">
                 {stories[current].name},
               </p>
-              <p className="text-center lg:text-left lg:text text mt-4 ml-2 text-2xl sm:text-3xl font-bold">
+              <p className="text-center lg:text-left lg:text text mt-4 ml-2 text-xl sm:text-3xl font-bold">
                 {stories[current].business}
               </p>
             </div>
-            <p className="text-left lg:text-left  text-lg lg:text-xl mt-4 ml-2 lg:ml-2 text-appText ">
+            <p className="text-left lg:text-left  text-md lg:text-xl mt-4 ml-2 lg:ml-2 text-appText ">
               {stories[current].story}
             </p>
           </div>
