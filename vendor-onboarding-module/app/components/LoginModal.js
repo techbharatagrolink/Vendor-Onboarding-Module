@@ -12,7 +12,8 @@ export default function LoginModal({ isOpen, onClose }) {
   const [error, setError] = useState("");
   const router = useRouter();
   const { toast, showToast, closeToast } = useToast();
-
+  const [resendTimer, setResendTimer] = useState(0);
+  const [hasTimerStarted, setHasTimerStarted] = useState(false);
   const sendOtp = async (event) => {
     event.preventDefault();
     setError("");
@@ -84,16 +85,60 @@ export default function LoginModal({ isOpen, onClose }) {
     }
   };
 
+  // const resendOtpAndClearInputs = (event) => {
+  //   event.preventDefault();
+
+  //   if (resendTimer > 0) return; // prevent spamming during timer
+  //   setOtp(""); // clear OTP input
+
+  //   // First resend: send immediately
+  //   if (!hasResentOnce) {
+  //     sendOtp(new Event("submit"));
+  //     setHasResentOnce(true);
+  //   } else {
+  //     // Delay sending from second time onward
+  //     setResendTimer(30);
+  //     const interval = setInterval(() => {
+  //       setResendTimer((prev) => {
+  //         if (prev <= 1) {
+  //           clearInterval(interval);
+  //           sendOtp(new Event("submit")); // send after timer ends
+  //           return 0;
+  //         }
+  //         return prev - 1;
+  //       });
+  //     }, 1000);
+  //   }
+  // };
+  const resendOtpAndClearInputs = (event) => {
+    event.preventDefault();
+    if (resendTimer > 0) return; // Block clicks during timer
+
+    setOtp(""); // Clear OTP inputs
+
+    sendOtp(new Event("submit")); // Send OTP immediately
+
+    // Start 30s timer
+    setResendTimer(30);
+    setHasTimerStarted(true);
+
+    const interval = setInterval(() => {
+      setResendTimer((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  };
+
   if (!isOpen) return null;
 
   return (
     <>
       {toast && (
-        <Toast
-          type={toast.type}
-          message={toast.message}
-          onClose={closeToast}
-        />
+        <Toast type={toast.type} message={toast.message} onClose={closeToast} />
       )}
       <div
         className="fixed inset-0 bg-[#000000] z-40"
@@ -197,9 +242,14 @@ export default function LoginModal({ isOpen, onClose }) {
                 <button
                   type="button"
                   className="cursor-pointer text-sm text-appDarkGreen"
-                  onClick={() => sendOtp(new Event("submit"))}
+                  onClick={resendOtpAndClearInputs}
+                  disabled={resendTimer > 0}
                 >
-                  Resend OTP
+                  {resendTimer > 0
+                    ? `Try again in ${resendTimer}s`
+                    : hasTimerStarted
+                    ? "Resend OTP"
+                    : "Send OTP Again"}
                 </button>
                 <button
                   type="submit"
