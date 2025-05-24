@@ -87,7 +87,7 @@ export default function StorageAndShipping() {
 
           <div className="w-full sm:w-2/3  h-full md:w-1/2 lg:w-1/2 my-4  flex justify-center items-center">
             <Image
-              src="/ShippingImage1.png"
+              src="/ShippingImage.png"
               alt=" product Image"
               className="object-contain h-full w-full"
               width={500}

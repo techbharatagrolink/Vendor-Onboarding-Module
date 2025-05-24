@@ -52,14 +52,13 @@ export default function Footer() {
               <li><Link  href="/SellOnline#createAccount">Create Account</Link></li>
               <li><Link  href="/SellOnline#listProducts">List Products</Link></li>
               <li><Link href="/SellOnline#storage">Shipping</Link></li>
-              {/* <li><Link target="_blank" href="/SellOnline#createAccount">Create Account</Link></li> */}
               <li><Link  href="/SellOnline#help">Help And Support</Link></li>
             </ul>
           </div>
 
           {/* Column 2 */}
           <div>
-            <h3 className="font-semibold mb-2"><Link target="_blank" href="/Grow">Grow Your Business</Link></h3>
+            <h3 className="font-semibold mb-2"><Link href="/Grow">Grow Your Business</Link></h3>
             <ul className="space-y-1">
               <li><Link  href="/Grow#insights">Insights & Tools</Link></li>
               {/* <li>Bharat Agrolink Ads</li> */}
@@ -70,7 +69,7 @@ export default function Footer() {
 
           {/* Column 3 */}
           <div>
-            <h3 className="font-semibold mb-2"><Link target="_blank" href="/Learn">Learn More</Link></h3>
+            <h3 className="font-semibold mb-2"><Link  href="/Learn">Learn More</Link></h3>
             <ul className="space-y-1">
               <li><Link  href="/Learn#general">FAQs</Link></li>
               {/* <li>Seller Success Stories</li> */}
